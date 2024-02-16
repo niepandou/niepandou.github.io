@@ -1,0 +1,1189 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>linux第一部分,命令操作 | 涅槃豆の博客</title><meta name="author" content="niepandou"><meta name="copyright" content="niepandou"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="快捷键或命令 作用    ctrl+ alt + t 打开终端窗口   tab 命令补全，补全命令，补全目录、补全命令参数   ctrl + c 强行终止当前命令   ctrl + d 键盘输入终止   ctrl + s 暂停命令，任意键继续   ctrl + z 将当前程序放到后台运行，恢复到前台为命令fg   ping + 网址 检测网络   ifconfig 查看网络默认分配地址">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux第一部分,命令操作">
+<meta property="og:url" content="http://niepandou.github.io/2023/11/16/linux001/index.html">
+<meta property="og:site_name" content="涅槃豆の博客">
+<meta property="og:description" content="快捷键或命令 作用    ctrl+ alt + t 打开终端窗口   tab 命令补全，补全命令，补全目录、补全命令参数   ctrl + c 强行终止当前命令   ctrl + d 键盘输入终止   ctrl + s 暂停命令，任意键继续   ctrl + z 将当前程序放到后台运行，恢复到前台为命令fg   ping + 网址 检测网络   ifconfig 查看网络默认分配地址">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://niepandou.github.io/post_img/0.jpg">
+<meta property="article:published_time" content="2023-11-16T15:59:59.000Z">
+<meta property="article:modified_time" content="2023-11-27T13:05:46.879Z">
+<meta property="article:author" content="niepandou">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="计算机">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://niepandou.github.io/post_img/0.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://niepandou.github.io/2023/11/16/linux001/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'linux第一部分,命令操作',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-27 21:05:46'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">42</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/html/movies.html"><i class="fa-fw fas fa-video"></i><span> 小电影</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/post_img/0.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="涅槃豆の博客"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">涅槃豆の博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div><div class="menus_item"><a class="site-page" href="/html/movies.html"><i class="fa-fw fas fa-video"></i><span> 小电影</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">linux第一部分,命令操作</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-16T15:59:59.000Z" title="发表于 2023-11-16 23:59:59">2023-11-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-27T13:05:46.879Z" title="更新于 2023-11-27 21:05:46">2023-11-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/linux/">linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">12.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>44分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="linux第一部分,命令操作"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><table>
+<thead>
+<tr>
+<th>快捷键或命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ctrl+ alt + t</td>
+<td>打开终端窗口</td>
+</tr>
+<tr>
+<td>tab</td>
+<td>命令补全，补全命令，补全目录、补全命令参数</td>
+</tr>
+<tr>
+<td>ctrl + c</td>
+<td>强行终止当前命令</td>
+</tr>
+<tr>
+<td>ctrl + d</td>
+<td>键盘输入终止</td>
+</tr>
+<tr>
+<td>ctrl + s</td>
+<td>暂停命令，任意键继续</td>
+</tr>
+<tr>
+<td>ctrl + z</td>
+<td>将当前程序放到后台运行，恢复到前台为命令<code>fg</code></td>
+</tr>
+<tr>
+<td>ping + 网址</td>
+<td>检测网络</td>
+</tr>
+<tr>
+<td>ifconfig</td>
+<td>查看网络默认分配地址</td>
+</tr>
+<tr>
+<td>clear</td>
+<td>清除界面</td>
+</tr>
+<tr>
+<td>ping + 默认分配ip地址</td>
+<td>检测与路由器连接状况</td>
+</tr>
+<tr>
+<td>ping + 127.0.0.1</td>
+<td>检测与本机连接情况</td>
+</tr>
+<tr>
+<td>sudo（获取超级命令权限） apt install(下载安装命令) …</td>
+<td>安装…</td>
+</tr>
+<tr>
+<td>sudo apt update</td>
+<td>更新软件列表</td>
+</tr>
+<tr>
+<td>cat &#x2F;etc&#x2F;…</td>
+<td>查看…</td>
+</tr>
+<tr>
+<td>cat &#x2F;etc&#x2F;issue</td>
+<td>查看发行版本</td>
+</tr>
+<tr>
+<td>history</td>
+<td>查看历来命令（从你装了这个系统开始）</td>
+</tr>
+<tr>
+<td>man …</td>
+<td>查看某命令的相关命令及解释</td>
+</tr>
+<tr>
+<td>cd &#x2F;</td>
+<td>切换到根目录，cd用于改变当前工作目录 要加路径</td>
+</tr>
+<tr>
+<td>ll</td>
+<td>显示当前目录的文件（附详细信息）</td>
+</tr>
+<tr>
+<td>ls</td>
+<td>罗列当前目录的文件</td>
+</tr>
+<tr>
+<td>pwd</td>
+<td>显示当前工作目录</td>
+</tr>
+<tr>
+<td>cd .</td>
+<td>返回当前目录</td>
+</tr>
+<tr>
+<td>cd ..</td>
+<td>返回上层目录</td>
+</tr>
+<tr>
+<td>cd ~</td>
+<td>切换的该用户家目录</td>
+</tr>
+<tr>
+<td>cd -</td>
+<td>返回上一次的目录cd</td>
+</tr>
+<tr>
+<td>cd &#x2F;…&#x2F;</td>
+<td>进入…的目录</td>
+</tr>
+<tr>
+<td>ls（后面的符号i与cd相同）</td>
+<td>显示指定目录的内容</td>
+</tr>
+<tr>
+<td>mkdir xxx</td>
+<td>（make directory）在当前目录下创建文件夹，也可一次性创建多个，即mkdir xxx xxx xxx …</td>
+</tr>
+<tr>
+<td>rmdir xxx</td>
+<td>删除当前目录的xxx文件夹</td>
+</tr>
+<tr>
+<td>rm xxx（或者对应路径下的xxx）</td>
+<td>删除当前目录的xxx文件</td>
+</tr>
+<tr>
+<td>cp file1 file2</td>
+<td>将某目录file1文件复制到某目录file2文件下，如果存在file2则覆盖，如果不存在则创建，-r时可以操作文件夹</td>
+</tr>
+<tr>
+<td>mv file1 file2</td>
+<td>将file1移动到file2所在位置，如果在同目录下且file2不存在，则可认为是将file1改名为file2，如果file2不存在则创建文件，如果文件存在则覆盖文件</td>
+</tr>
+<tr>
+<td>ln aaa bbb</td>
+<td>硬链接bbb链接到aaa</td>
+</tr>
+<tr>
+<td>ln &#x2F;…&#x2F;aaa bbb -s</td>
+<td>软链接bbb存储指向aaa的路径</td>
+</tr>
+<tr>
+<td>echo “aaabbb” &gt; xxx</td>
+<td>把字符串aaabbb写入到xxx文件中</td>
+</tr>
+<tr>
+<td>find -name “xxx”</td>
+<td>查找指定xxx名称的文件的路径</td>
+</tr>
+<tr>
+<td>chmod xxx file</td>
+<td>数字设定法改变一个文件对三类用户的权限</td>
+</tr>
+<tr>
+<td>umask</td>
+<td>查看文件掩码</td>
+</tr>
+<tr>
+<td>umask xxxx</td>
+<td>临时修改当前用户文件掩码</td>
+</tr>
+</tbody></table>
+<h1 id="初步认识linux"><a href="#初步认识linux" class="headerlink" title="初步认识linux"></a>初步认识linux</h1><h2 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h2><p>桥接模式：处于同一个网络，路由器给主机分配一个ip地址也给虚拟机分配一个ip地址</p>
+<p>NAT模式：本机虚拟一个路由器，该路由器用来连接虚拟机，即创建了一个内网</p>
+<p>内网可以访问外网，外网无法访问内网（一般情况，NAT穿透技术可以实现外网访问内网）</p>
+<h2 id="设置静态IP地址"><a href="#设置静态IP地址" class="headerlink" title="设置静态IP地址"></a>设置静态IP地址</h2><ol>
+<li>选择自动DHCP模式</li>
+</ol>
+<p>2.重启网络（网络打开再关闭），检测有无网络</p>
+<p>3.查看网络detail信息，记录下来</p>
+<p>4.在ipv4分页改为手动</p>
+<p>5.填写记录信息，子网掩码设置为255.255.255.0,子网掩码用于获取ip地址的网段，网关填写默认路由地址</p>
+<p>6.应用设置，测试网络</p>
+<h3 id="远程连接（连接虚拟机）"><a href="#远程连接（连接虚拟机）" class="headerlink" title="远程连接（连接虚拟机）"></a>远程连接（连接虚拟机）</h3><p>1.C&#x2F;S架构，客户端（client）服务器（sever）架构，如果连接虚拟机，服务器就是虚拟机，客户端即远程连接工具所在机器，服务器端需要安装服务端程序（sshd）</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"> $sudo apt install ssh</span><br><span class="line"><span class="comment">//安装ssh客户端</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">$ps -elf|grep sshd</span><br><span class="line">    <span class="comment">//确认ssh客户端是否运行，如果有根目录就说明安装成功</span></span><br></pre></td></tr></table></figure>
+
+<p>2.切换到客户端xshell程序，open命令打开会话，新建会话</p>
+<p>3.协议选择ssh，主机名为虚拟机静态ip地址</p>
+<h3 id="建立一个c-cpp文件并编译运行"><a href="#建立一个c-cpp文件并编译运行" class="headerlink" title="建立一个c&#x2F;cpp文件并编译运行"></a>建立一个c&#x2F;cpp文件并编译运行</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">$ cd hello.cpp  #进入源文件所在目录</span><br><span class="line">$ touch hello.c  #新建空白的源文件</span><br><span class="line">$ gedit hello.c  #编辑源文件</span><br><span class="line">$ gcc hello.c  #生成可执行程序</span><br><span class="line">$ ./hello.out  #运行可执行程序</span><br><span class="line">   hello </span><br><span class="line">$   #继续输入其它命令</span><br></pre></td></tr></table></figure>
+
+<h2 id="linux内核"><a href="#linux内核" class="headerlink" title="linux内核"></a>linux内核</h2><p>内核（kernel）作用：</p>
+<blockquote>
+<p>​	1.管理硬件资源</p>
+<p>2.为上层应用软件提供了运行环境</p>
+</blockquote>
+<p>系统调用（system calls） 内核对上层应用程序提供的的接口</p>
+<p>库函数 对系统调用进行的包装</p>
+<p>shell 命令解释器，解析命令，执行命令&#x2F;脚本，脚本（命令的集合）</p>
+<h2 id="用户子系统"><a href="#用户子系统" class="headerlink" title="用户子系统"></a>用户子系统</h2><p>用户分类</p>
+<blockquote>
+<p>1.特权用户&#x2F;root用户 啥都能干</p>
+</blockquote>
+<blockquote>
+<p>2.普通用户 sudoers 临时拥有一些权限</p>
+</blockquote>
+<blockquote>
+<p>3.其他用户</p>
+</blockquote>
+<p>查看所有用户命令</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">$ cat /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p>为某用户申请特权</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">$ sudo useradd xxx</span><br></pre></td></tr></table></figure>
+
+<p>删除用户及其所拥有文件</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">$ sudo userdel xxx</span><br><span class="line"><span class="comment">//并删除其目录</span></span><br><span class="line">$sudo userdel -r xxx</span><br></pre></td></tr></table></figure>
+
+<p>正确创建用户</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">$ sudo useradd -m -s bin/bash xxx</span><br><span class="line"><span class="comment">//-m表示自动创建家目录</span></span><br><span class="line"><span class="comment">//-s表示指定路径下，比如当前命令为指定bash为默认的shell</span></span><br></pre></td></tr></table></figure>
+
+<p>切换用户</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">$su xxx</span><br><span class="line"><span class="comment">//切换到root时因为每次开机都会随机root密码，所以需要用命令</span></span><br><span class="line">$sudo passwd root来两次更改新root密码</span><br></pre></td></tr></table></figure>
+
+<h3 id="banner打印字符串"><a href="#banner打印字符串" class="headerlink" title="banner打印字符串"></a>banner打印字符串</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//一般打印</span></span><br><span class="line">使用banner xxx打印xxx</span><br><span class="line">    </span><br><span class="line"><span class="comment">//指定参数打印</span></span><br><span class="line"><span class="comment">//竖向</span></span><br><span class="line">printerbanner -w len xxx</span><br><span class="line"><span class="comment">//-w表示打印指定宽度，len为指定宽度</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">//横向</span></span><br><span class="line">toilet -w len xxx</span><br><span class="line"><span class="comment">//多次打印知道ctrl+c结束</span></span><br><span class="line">figlet -w len xxx xxx xxx xxx ... (ctrl + c)</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>xxx的这种参数一般可放在命令末尾也可以放在主命令后面</p>
+</blockquote>
+<h1 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h1><h2 id="文件子系统"><a href="#文件子系统" class="headerlink" title="文件子系统"></a>文件子系统</h2><table>
+<thead>
+<tr>
+<th>文件名</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bin</td>
+<td>binary 可执行程序</td>
+</tr>
+<tr>
+<td>dev</td>
+<td>device 设备文件</td>
+</tr>
+<tr>
+<td>home</td>
+<td>普通目录家目录的根目录</td>
+</tr>
+<tr>
+<td>root</td>
+<td>root用户的家目录</td>
+</tr>
+<tr>
+<td>sbin</td>
+<td>system binary 和系统相关的可执行程序</td>
+</tr>
+<tr>
+<td>var</td>
+<td>variable 经常发生变化的文件（e.g. 日志文件）</td>
+</tr>
+<tr>
+<td>etc</td>
+<td>配置文件</td>
+</tr>
+<tr>
+<td>lib</td>
+<td>库文件</td>
+</tr>
+<tr>
+<td>proc</td>
+<td>process 进程映射文件</td>
+</tr>
+<tr>
+<td>usr</td>
+<td>普通用户能够访问的文件</td>
+</tr>
+</tbody></table>
+<h3 id="文件夹与文件操作"><a href="#文件夹与文件操作" class="headerlink" title="文件夹与文件操作"></a>文件夹与文件操作</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">$mkdir xxx</span><br><span class="line"><span class="comment">//在当前目录下创建xxx文件夹</span></span><br><span class="line">    </span><br><span class="line">$mkdir xxx xxx xxx xxx</span><br><span class="line"><span class="comment">//在当前目录下创建多个文件夹</span></span><br><span class="line">    </span><br><span class="line">$mkdir xxx -v</span><br><span class="line"><span class="comment">//创建的同时得到创建的详细信息</span></span><br><span class="line">    </span><br><span class="line">$rmdir xxx</span><br><span class="line"><span class="comment">//与mkdir操作相同，不过从创建变为了删除，且删除的只能是空目录空文件夹</span></span><br><span class="line">    </span><br><span class="line">$mv aaa bbb</span><br><span class="line"><span class="comment">//将aaa文件移动到bbb文件夹内</span></span><br><span class="line">    </span><br><span class="line">$ll</span><br><span class="line"><span class="comment">//完全显示当前目录的文件（隐藏文件也可显示，附带详细信息）</span></span><br><span class="line">    </span><br><span class="line">$ls</span><br><span class="line"><span class="comment">//显示当前目录文件</span></span><br><span class="line">    </span><br><span class="line">$ll/ls -a </span><br><span class="line"><span class="comment">//-l表示显示文件的详细信息，-a显示当前目录所有文件 -t表示以时间排列显示文件，-i表示显示id，这些参数可以组合使用，h表示将文件大小以人类易读的方式显示</span></span><br><span class="line"><span class="comment">//例如 ls -li</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在ll或者ls - l显示文件时 </p>
+<p>第一列如果前缀时dir则表示文件夹，如果是-开头则表示普通文件，l开头则表示符号链接，c代表字符设备（键盘），b代表块设备（硬盘），p代表管道文件（进程之间进行通信的文件），s表示套接字文件（网络通信）</p>
+<p>后面跟着的w，r，e分别代表write，read，execute，表示普通用户能够行使的权限，总共出现三次即三组，第一组表示自己的权限，第二组表示同组的其他成员的权限，第三组表示其他组成员的权限，例如 drwxr-xr-x</p>
+<p>第二列 硬链接个数</p>
+<p>第三列 用户名称</p>
+<p>第四列 用户所属组名</p>
+<p>第五列 文件大小 单位比特byte</p>
+<p>第六列 最近修改时间</p>
+<p>最后一列 文件名称</p>
+</blockquote>
+<h3 id="通配符（wild-card）"><a href="#通配符（wild-card）" class="headerlink" title="通配符（wild card）"></a>通配符（wild card）</h3><table>
+<thead>
+<tr>
+<th>通配符</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>可以匹配任意多个字符（包括0个字符）</td>
+</tr>
+<tr>
+<td>？</td>
+<td>可以匹配任意一个字符</td>
+</tr>
+<tr>
+<td>[…]</td>
+<td>匹配这个集合（即这个括号内）的任意一个字符</td>
+</tr>
+<tr>
+<td>[!…]</td>
+<td>匹配集合外的任意一个字符</td>
+</tr>
+<tr>
+<td>[0-9],[a-z],[A-Z],[A-Za-z]</td>
+<td>匹配内部的任意一个字符</td>
+</tr>
+</tbody></table>
+<h3 id="cp（copy）"><a href="#cp（copy）" class="headerlink" title="cp（copy）"></a>cp（copy）</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//可以复制一个文件或一个文件夹</span></span><br><span class="line">cp /.../xxx .</span><br><span class="line"><span class="comment">//把某路径下的xxx复制到当前目录下，&#x27;.&#x27;也可以换成某个路径</span></span><br><span class="line">    </span><br><span class="line">cp file1 file2</span><br><span class="line"><span class="comment">//把文件file1复制到另一个文件file2中</span></span><br><span class="line"><span class="comment">//如果文件file2不存在，则创建这个文件，如果文件存在则覆盖这个文件</span></span><br><span class="line"><span class="comment">//-i会诊断要覆盖文件原本是否有信息，并提示是否覆盖，-r表示递归地复制文件夹，-u表示复制多个文件到某个目录下时，会选择性的进行复制，如果某个文件不在这个目录下或者某个文件的修改时间新于该目录下同名文件，则会将这个文件复制或覆盖到该目录下，-v表示复制时的详细信息	</span></span><br><span class="line"><span class="comment">//-r的时候，如果file2文件夹存在，则会将file1文件夹复制到file2目录下</span></span><br><span class="line">cp *.cpp dir</span><br><span class="line">把通配符后带有.cpp的文件全部复制到dir目录中</span><br></pre></td></tr></table></figure>
+
+<h3 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//将一个文件移动到另一目录下</span></span><br><span class="line">mv file1 file2</span><br><span class="line"><span class="comment">//将file1移动到file2所在位置，如果在同目录下且file2不存在，则可认为是将file1改名为file2</span></span><br><span class="line"> <span class="comment">//-i表示如果同名是提示是否覆盖</span></span><br><span class="line">    </span><br><span class="line">mv file dir</span><br><span class="line"><span class="comment">//如果dir存在，则将file移动到dir中，如果不存在，则认为dir是一个普通的文件，并创建</span></span><br><span class="line">mv dir1 dir2</span><br><span class="line"><span class="comment">//如果dir2存在，则将dir1文件夹移动到dir2中，如果不存在则会创建文件夹，将dir1内的文件复制到dir2中，如果是同目录则起到重命名的效果</span></span><br><span class="line"><span class="comment">//-v，-u与cp的-v，-u相同效果</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//删除文件或者删除文件夹（与rmdir不同，既可以删除空文件夹也可以删除有文件的文件夹）</span></span><br><span class="line">rm /.../ xxx xxx xxx</span><br><span class="line"><span class="comment">//删除xxx或多个文件</span></span><br><span class="line"><span class="comment">//-i提示要不要删除，-r递归删除即能删除文件夹，-v删除的详细过程，-f忽略提示</span></span><br><span class="line">rm-rf / 删库跑路</span><br><span class="line"><span class="comment">//自己删除时建议不要使用root用户进行删除，删除之前要通过ls确认要删除的选项，同时添加-i参数</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><h3 id="硬链接"><a href="#硬链接" class="headerlink" title="硬链接"></a>硬链接</h3><blockquote>
+<p>目录本质也是一个文件</p>
+<p>通过ls - la可以看到开头的两个文件分别是 . 和 .. </p>
+<p>目录会存储一些目录项，. 和 .. 就是目录项，分别指向当前目录和上级目录，目录项以链表进行链接，每个节点就是一个目录项（entry），目录中的普通文件不算目录项</p>
+<p>通过目录项可以直接访问某个目录，就称为硬链接</p>
+<p>如果想在一个目录中添加或删除目录项，该用户需要拥有该目录的写权限</p>
+<p>一个普通文件的硬链接数默认为1</p>
+</blockquote>
+<h3 id="软链接（符号链接）"><a href="#软链接（符号链接）" class="headerlink" title="软链接（符号链接）"></a>软链接（符号链接）</h3><blockquote>
+<p>某个文件存储的是一个路径，这条路径指向了一个目录，这个间接访问目录的方式就成为软链接</p>
+<p>符号链接类似与指针，和windows的快捷方式</p>
+</blockquote>
+<h3 id="ln（link）"><a href="#ln（link）" class="headerlink" title="ln（link）"></a>ln（link）</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//创建链接</span></span><br><span class="line">ln aaa bbb</span><br><span class="line"><span class="comment">//创建一个链接到aaa的目录项，目录项名为bbb</span></span><br><span class="line">    </span><br><span class="line">ln /.../aaa bbb</span><br><span class="line"><span class="comment">//创建一个链接到某目录的aaa文件的bbb软链接，例如ln ../aaa bbb意为bbb的文件存储了指向上级目录aaa文件的路径，且以..或.等目录项写的路径成为相对路径，具体描述则为绝对路径 ln /home/niepandou/aaa bbb</span></span><br><span class="line"><span class="comment">//为了避免文件转移导致的绝对路径找不到文件，一般都选择相对路径进行描述</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h2><h3 id="locate"><a href="#locate" class="headerlink" title="locate"></a>locate</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//全盘查找某文件</span></span><br><span class="line">locate xxx</span><br><span class="line"><span class="comment">//查找所有与xxx相关的文件，如果某个文件已经在linux的数据库中，查找起来会非常快</span></span><br><span class="line"><span class="comment">//如果是新创建的一个文件，暂时是查不到该文件的</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="which（常用）"><a href="#which（常用）" class="headerlink" title="which（常用）"></a>which（常用）</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定位一个command（可执行程序）</span></span><br><span class="line">which xxx</span><br><span class="line"><span class="comment">//which sshd可查找到sshd程序的位置</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在该目录下进行搜索，如果有子目录也会在子目录中进行搜索, 可以使用通配符进行查找</span></span><br><span class="line">find xxx</span><br><span class="line"><span class="comment">//-name表示以名字（-name 具体名字）进行查找，输出的是他的路径</span></span><br><span class="line"><span class="comment">//-a 表示逻辑与and，-o表示或or，！表示取反</span></span><br><span class="line">    </span><br><span class="line">组合查找</span><br><span class="line">find /.../ -name <span class="string">&quot;*.a&quot;</span> -o -name <span class="string">&quot;*.b&quot;</span>查找以.a或.b结尾的文件</span><br><span class="line">    </span><br><span class="line"><span class="comment">//-gid n表示查找属于id号为n的用户组的所有文件</span></span><br><span class="line"><span class="comment">//-uid n表示查找属于id号为n的用户的所有文件 uid也可写为user</span></span><br><span class="line"><span class="comment">//-type c表示查找类型为c的文件 b块设备文件，c字符设备文件，d文件夹（目录）文件，p管道文件，f普通文件，l软链接，s表示套接字文件，硬链接文件可以看作是一个普通文件	</span></span><br><span class="line">    </span><br><span class="line">e.g.: find ~ -name <span class="string">&quot;*hello*&quot;</span> -a -type f<span class="comment">//在家目录中寻找包含hello且为类型为普通文件的文件</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">//-size n表示以存储单元查找 b表示块，一般512字节称之为块，c（character）表示字节，K，M，G则为其原来的意思，默认查找块</span></span><br><span class="line">e.g: find ~ -size <span class="number">8980</span>c <span class="comment">//精确查找字节为8980的文件 +8090c则表示查找大于8090c的文件，如果有小数要记住查找是向上取整</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">//如果要查找0字节则选择 -empty（可以用来查找空文件和空目录）</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">//-perm表示这个文件对不同用户的权限，-rw-rw-r--每一组用二级制表示为110 110 100（开头的-表示普通文件），因为一个用户最多用的的权限有rwx，二进制转十进制为7，所以每一组可以用八进制表示，-perm就是通过三个八进制数来作为指标进行find查找的，-rw-rw-r--用三个八进制表示为664，则可以写为-perm 664 </span></span><br><span class="line"><span class="comment">//一般普通文件的perm就是664</span></span><br><span class="line"><span class="comment">//如果查找是通过用户的单个权限 也可以这样写 -perm -u=x 表示的是查找用户拥有执行权限的文件</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">//-exec 可以以行为单位把一个命令的输出结果当作另一个命令的参数，一般可用于组合命令</span></span><br><span class="line">find -name “* .cpp” -exec ls -l &#123;&#125; \; <span class="comment">//&#123;&#125; 将find命令输出的结果以行为单位作为ls -l的参数</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h2><blockquote>
+<p>一般用linux执行.py文件时是没有足够权限的</p>
+<p>在执行该文件时提示权限不足</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">./hello.py</span><br><span class="line">Permisson Denied</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<h3 id="chmod（change-mode）改变权限"><a href="#chmod（change-mode）改变权限" class="headerlink" title="chmod（change mode）改变权限"></a>chmod（change mode）改变权限</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//文字设定法</span></span><br><span class="line">chmod [ugoa][+=-][rwx] file/dir<span class="comment">//第一组表示哪类用户，a表示all，第二组表示增加减少某个权限, =时表示该用户只有某个权限，第三组表示的就是具体权限 </span></span><br><span class="line"> 组合修改权限</span><br><span class="line"> e.g: chmod u=rw, g=rw, o=r hello.py</span><br><span class="line"> <span class="comment">//数字设定法</span></span><br><span class="line"> chmod [三个八进制数] file/dir <span class="comment">//第一组分别表示ugo三类用户的权限</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="umask（文件掩码）"><a href="#umask（文件掩码）" class="headerlink" title="umask（文件掩码）"></a>umask（文件掩码）</h3><blockquote>
+<p>文件掩码指的是在创建文件（0666）或目录时（0777）在全部权限中要去掉的一些权限</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取文件掩码</span></span><br><span class="line"></span><br><span class="line">直接输入umask会得到<span class="number">0002</span>，<span class="number">002</span>为普通用户的文件掩码，<span class="number">0022</span>为root用户掩码</span><br><span class="line">创建文件夹时，默认掩码为<span class="number">777</span>，即所有用户都拥有所有权限，最终得到的却是<span class="number">775</span>，最后得到的文件掩码<span class="number">775</span> = <span class="number">777</span> &amp; （~umask）	</span><br><span class="line">创建普通文件时，默认掩码为<span class="number">666</span>，最终文件掩码为<span class="number">664</span> = <span class="number">666</span> &amp; （~<span class="number">0002</span>）</span><br><span class="line">计算的过程可以直接简化成 <span class="number">666</span> - umask</span><br><span class="line">    </span><br><span class="line"><span class="comment">//临时改变当前用户的umask</span></span><br><span class="line">umask xxxx<span class="comment">//umask 0222</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h2><h3 id="文件描述符（一般为非负整数）"><a href="#文件描述符（一般为非负整数）" class="headerlink" title="文件描述符（一般为非负整数）"></a>文件描述符（一般为非负整数）</h3><blockquote>
+<p>stdin 标准输入 0</p>
+<p>stdout 标准输出 1</p>
+<p>stderror 标准错误输出 2</p>
+<p>‘&gt;’ 标准输出重定向(可以认为是c++的输入)</p>
+<p>’&lt;‘ 标准输入重定向（可以认为是c++的输出）</p>
+<p>2 &gt; 标准错误重定向（2就是strerror）</p>
+<p>‘&gt;&gt;’ 标准输出重定向（追加方式）</p>
+</blockquote>
+<h3 id="cat（查看文件内容）"><a href="#cat（查看文件内容）" class="headerlink" title="cat（查看文件内容）"></a>cat（查看文件内容）</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//查看一个文件的内容（速度慢，因为和strcat一样是在输出流直接拼接内容）</span></span><br><span class="line">cat file</span><br><span class="line">    </span><br><span class="line"><span class="comment">//将file1文件的内容输出到file2中，类似cp</span></span><br><span class="line">cat file1 &gt; file2</span><br><span class="line"></span><br><span class="line"><span class="comment">//将键盘输入的内容输输出（写入）到file文件中,如果不写file则是输出到显示器上，ctrl + D结束输入</span></span><br><span class="line">cat &gt; file</span><br><span class="line"><span class="comment">//下次再对这个file进行相同操作时是重新写入， &gt;&gt;则会追加写入</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="echo（打印一行文本）"><a href="#echo（打印一行文本）" class="headerlink" title="echo（打印一行文本）"></a>echo（打印一行文本）</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//打印xxx</span></span><br><span class="line">echo <span class="string">&quot;xxx&quot;</span></span><br><span class="line"><span class="comment">//如果echo后面不带任何东西，则会打印一行空行</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">//将文本xxx输出（写入）到file文件中，同样是重新写入</span></span><br><span class="line">echo <span class="string">&quot;xxx&quot;</span> &gt; file</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="head（显示文件的头几行信息）"><a href="#head（显示文件的头几行信息）" class="headerlink" title="head（显示文件的头几行信息）"></a>head（显示文件的头几行信息）</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//默认输出10行</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//打印file文件前n行</span></span><br><span class="line">head -n n file</span><br></pre></td></tr></table></figure>
+
+<h3 id="tail（显示文件的后几行信息）"><a href="#tail（显示文件的后几行信息）" class="headerlink" title="tail（显示文件的后几行信息）"></a>tail（显示文件的后几行信息）</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//默认输出10行</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//指定n行与head相同</span></span><br><span class="line">tail -n n file</span><br><span class="line">    </span><br><span class="line"><span class="comment">//可以用于查看最近日志文件</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="more-less（单页浏览文件）"><a href="#more-less（单页浏览文件）" class="headerlink" title="more&#x2F;less（单页浏览文件）"></a>more&#x2F;less（单页浏览文件）</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//每次查看文件的某页</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//查看a文件的首页，f（forward）浏览下一页，b（backward）浏览上一页,q(quit)退出</span></span><br><span class="line">more a.txt</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h3 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//对文件内容进行排序（以行为单位）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//对file文件排序，比如文件内第一行为bbb，第二行为aaa，sort之后则打印aaa，第二行bbb，原本的内容不会发生改变</span></span><br><span class="line">sort file</span><br><span class="line">    </span><br><span class="line"><span class="comment">//不能够文件重定向自己，这样做会使文件内容清零</span></span><br><span class="line">sort file &gt; file</span><br><span class="line"><span class="comment">//cat sort会发现没有任何输出</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">//但可以文件重定向另一个文件</span></span><br><span class="line">sort file1 &gt; file2</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>uniq（unique）</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//去重连续重复的几行</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//对file文件读取并以行为单位去重，打印，原本的内容不会改变</span></span><br><span class="line">unique file</span><br></pre></td></tr></table></figure>
+
+
+
+<p>对一个文件操作得到排序且没有重复元素的文件</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">sort sort.txt &gt; sortt.txt;uniq sortt.txt &gt; sort.txt;rm sortt.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a>xargs</h3> <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// | 管道连接两个命令，管道相当于一个缓冲区，通过第一条命令将结果输送到管道中，然后对管道的内容执行第二条命令，xargs是对内容每一行执行一次命令2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//命令1输出的每一行都执行一次命令2</span></span><br><span class="line">commmand1 | xargs command2</span><br><span class="line">e.g: find ~ -name <span class="string">&quot;*.cpp&quot;</span> | xargs ls -l </span><br><span class="line"></span><br><span class="line"><span class="comment">//对命令1得到的结果整体进行命令2</span></span><br><span class="line">command1 | command2</span><br><span class="line">e.g : sort sort.txt | uniq</span><br></pre></td></tr></table></figure>
+
+<h3 id="file"><a href="#file" class="headerlink" title="file"></a>file</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//得到一个文件的信息（比ls-la更详细）</span></span><br><span class="line"></span><br><span class="line">ls file</span><br></pre></td></tr></table></figure>
+
+<h3 id="wc（what-count）"><a href="#wc（what-count）" class="headerlink" title="wc（what count）"></a>wc（what count）</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//记录文件中的行数，字节数，单词数</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//记录文件中有多少个c</span></span><br><span class="line">wc file -c</span><br><span class="line"><span class="comment">//-c表示字节数</span></span><br><span class="line"><span class="comment">//-l表示行数</span></span><br><span class="line"><span class="comment">//-w表示单词书</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="iconv"><a href="#iconv" class="headerlink" title="iconv"></a>iconv</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//修改字符集</span></span><br><span class="line"></span><br><span class="line">iconv -f gbk -t uft<span class="number">-8</span> xxx</span><br><span class="line"><span class="comment">//将xxx文件的字符集从gbk转译成uft-8</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="正则表达式-1"><a href="#正则表达式-1" class="headerlink" title="正则表达式"></a>正则表达式</h3><blockquote>
+<p>基本单位：普通字符，转义字符，’.’,(任意一个字符)，[] 集合（只要集合里的一个元素能匹配上就是能匹配 ），（）这个整体作为基本单位</p>
+<p>基本操作：1.连接：ab</p>
+<p>​					2.重复（必须是连续的）：’?‘ 表示重复1次或0次</p>
+<p>​								’+‘ 表示重复一次或多次</p>
+<p>​								‘*’ 表示重复任意次数</p>
+<p>​							{m,n}表示重复m-n次，m和n可以有一个没有，m没有可以认为最多重复n次，n没有可以认为至少重复m次</p>
+<p>​							{n}表示连续出现特定n次</p>
+<p>​							 [ ^abc]匹配任意字符，但不包含a，b，c</p>
+<p>特殊符号：</p>
+<p>​	^行首  “^abc” </p>
+<p>​	$行尾 “abc$”</p>
+<p>​	\&lt;词首 “\&lt;a”</p>
+<pre><code>\\&gt;词尾 &quot;a\\&gt;&quot;
+</code></pre>
+</blockquote>
+<h3 id="gerp-搜索文件内容"><a href="#gerp-搜索文件内容" class="headerlink" title="gerp(搜索文件内容)"></a>gerp(搜索文件内容)</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//globally regex(regular experssion) print</span></span><br><span class="line"><span class="comment">//以行为单位进行查找</span></span><br><span class="line">grep -en <span class="string">&quot;bbb&quot;</span> aaa<span class="comment">//在aaa文件中搜索带有bbb文本的内容 </span></span><br><span class="line"><span class="comment">//-e 使用扩展的正则表达式，一般组合使用放在最后</span></span><br><span class="line"><span class="comment">//-n 显示行号</span></span><br><span class="line"><span class="comment">//-i 忽略正则表示的大小写</span></span><br><span class="line">    </span><br><span class="line">e.g:grep -ne  <span class="string">&quot;cpp&quot;</span> test.txt</span><br><span class="line">    grep -ne <span class="string">&quot;h\&#123;1\&#125;&quot;</span> test.txt </span><br><span class="line">    </span><br><span class="line">find ~ -name <span class="string">&quot;*.cpp&quot;</span> |xargs grep -ne <span class="string">&quot;int main\(\)&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">alias<span class="comment">//别名</span></span><br><span class="line">    </span><br><span class="line">alias</span><br><span class="line"><span class="comment">//显示目前所有已有的别名</span></span><br><span class="line">alias aaa=bbb</span><br><span class="line"><span class="comment">//给bbb起一个别名为aaa，临时生效</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<h3 id="打包和压缩"><a href="#打包和压缩" class="headerlink" title="打包和压缩"></a>打包和压缩</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//打包</span></span><br><span class="line">打包文件一般比原文件大，打包文件会预留空间</span><br><span class="line">    </span><br><span class="line">    tar（主选项+辅选项） 目标文件名 源文件或目录</span><br><span class="line">    主选项：只能选择其中一个</span><br><span class="line">    c（create）r（追加）x（释放）</span><br><span class="line">    辅选项：</span><br><span class="line">    f（生成指定使用包文件或设备,指定文件名称）</span><br><span class="line">    v（显示打包过程）</span><br><span class="line">    z（用gzip压缩/解压缩文件，后缀名为.gz）</span><br><span class="line">    </span><br><span class="line">    e.g:tar cvzf a.gz a.out<span class="comment">//创造a.gz压缩文件将a.out放进该压缩文件中</span></span><br><span class="line">     	tar xvf hello.gz<span class="comment">//解压缩hello.gz文件，解压的文件放到该目录下</span></span><br><span class="line">        <span class="comment">//注意参数没有-</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h2><h3 id="df（disk-full查看磁盘状态）"><a href="#df（disk-full查看磁盘状态）" class="headerlink" title="df（disk full查看磁盘状态）"></a>df（disk full查看磁盘状态）</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">-h增加可读性</span><br></pre></td></tr></table></figure>
+
+<h3 id="du（disk-used查看磁盘使用情况）"><a href="#du（disk-used查看磁盘使用情况）" class="headerlink" title="du（disk used查看磁盘使用情况）"></a>du（disk used查看磁盘使用情况）</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">du /.../ 查看某目录下的使用情况，默认为当前目录</span><br><span class="line">    </span><br><span class="line">-h同上</span><br><span class="line">-d n 最多显示n个目录层数</span><br><span class="line"></span><br><span class="line">    du -h -d <span class="number">1</span> <span class="comment">//显示当前目录下文件和目录所占空间</span></span><br><span class="line">    du -h -d <span class="number">2</span><span class="comment">//显示当前目录及子目录下文件和目录所占空间</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="scp（s-cp远程拷贝secure-copy）"><a href="#scp（s-cp远程拷贝secure-copy）" class="headerlink" title="scp（s_cp远程拷贝secure copy）"></a>scp（s_cp远程拷贝secure copy）</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在网络上传下载</span></span><br><span class="line"></span><br><span class="line">scp source dest</span><br><span class="line">    </span><br><span class="line">本地路径：绝对路径,相对路径</span><br><span class="line">   </span><br><span class="line">远程路径：用户名@IP地址:+路径</span><br><span class="line">    </span><br><span class="line">    上传</span><br><span class="line">    scp Debugger.pdf niepandou@<span class="number">192.168</span><span class="number">.8</span><span class="number">.130</span>: ~<span class="comment">//将debugger文件传输给远程用户的家目录下</span></span><br><span class="line">    下载</span><br><span class="line">    scp -r niepandou@<span class="number">192.168</span><span class="number">.8</span><span class="number">.130</span>:~/cpp .<span class="comment">//将远程用户的家目录下的cpp文件夹下载到当前目录下</span></span><br><span class="line">        </span><br><span class="line">    <span class="comment">//-r 复制文件夹</span></span><br><span class="line">        </span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上述操作每次操作时都需要验证用户密码，使用密钥后可以跳过该过程</p>
+</blockquote>
+<h3 id="ssh-keygen密钥"><a href="#ssh-keygen密钥" class="headerlink" title="ssh-keygen密钥"></a>ssh-keygen密钥</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">产生密钥</span><br><span class="line">    </span><br><span class="line">id-rsa密钥</span><br><span class="line">id-rsa-pub公钥</span><br><span class="line"></span><br><span class="line">用scp将公钥传给远程用户，然后将pub文件放进ssh目录下（注意采用&gt;&gt;追加）的authorized_keys文件</span><br><span class="line"></span><br><span class="line">之后每次访问都不需要密码验证</span><br></pre></td></tr></table></figure>
+
+<p>git仓库</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">修改远程仓库过程</span><br><span class="line">    </span><br><span class="line">    <span class="number">1.</span>修改本地仓库（远程仓库文件传到本地仓库）</span><br><span class="line">    <span class="number">2.</span>add（将修改添加到缓存中，stage操作）</span><br><span class="line">    <span class="number">3.</span>commit（确认修改）</span><br><span class="line">    <span class="number">4.</span>push（将修改内容传到远程仓库）</span><br><span class="line">    如果有多人同时进行修改，系统会检验当前文件是否为原先的文件，如果不是则不会进行修改</span><br><span class="line">    </span><br><span class="line">    git用法与scp用法相同</span><br></pre></td></tr></table></figure>
+
+<h1 id="代码编译"><a href="#代码编译" class="headerlink" title="代码编译"></a>代码编译</h1><h2 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h2><h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">vim三种模式</span><br><span class="line">    短命令</span><br><span class="line">    </span><br><span class="line">    普通模式（命令模式）【ESC切换】</span><br><span class="line">    编辑模式（插入模式）【INSERT切换】</span><br><span class="line">    i插入到光标的前面，a插入到光标的后面（append），o光标切换到下一行</span><br><span class="line">    I行首，A行尾，O前一行</span><br><span class="line">    视图模式</span><br><span class="line">    </span><br><span class="line">命令模式：</span><br><span class="line">    长命令</span><br><span class="line">    以<span class="string">&#x27;:&#x27;</span>开头 </span><br><span class="line">    wq写入并退出</span><br><span class="line">    </span><br><span class="line">    光标移动</span><br><span class="line">    上下左右键 kjhl</span><br><span class="line">    翻页 ctrl+f（forward），ctrl+b（backword） </span><br><span class="line">    翻半页 ctrl+u（up）ctrl+d（down）</span><br><span class="line">    H：页首</span><br><span class="line">    L：该页最后一行的行首</span><br><span class="line">    gg：文件的开始</span><br><span class="line">    G：文件的末尾</span><br><span class="line">    w；下一个单词（word）</span><br><span class="line">    b：下一个单词（back） 	</span><br><span class="line">    n- 往上走n行</span><br><span class="line">    n+ 往下走n行</span><br><span class="line">    nG / :n 到第n行</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    删除操作（相当于剪切）</span><br><span class="line">    x：删除一个字符</span><br><span class="line">    dd：删除一行</span><br><span class="line">    ndd 删除光标往下 n行</span><br><span class="line">    :n，md：删除n-m行 </span><br><span class="line">    d^:删除该行光标到行首部分    </span><br><span class="line">    d$ / D:删除该行光标到行尾部分</span><br><span class="line">    dw：删除一个单词</span><br><span class="line">    [n]dw:删除n个单词</span><br><span class="line">    d[n]w:删除n个单词</span><br><span class="line">    dt):删除到)</span><br><span class="line">    dt<span class="string">&quot;:删除到“</span></span><br><span class="line"><span class="string">    u，撤销上一次操作undo</span></span><br><span class="line"><span class="string">    crtl+r：恢复修改    recover</span></span><br><span class="line"><span class="string">    p：粘贴操作（paste）</span></span><br><span class="line"><span class="string">    yy：拷贝一行（yank）</span></span><br><span class="line"><span class="string">    [n]yy / y[n]y:拷贝n行</span></span><br><span class="line"><span class="string">   :x,y y拷贝x-y行</span></span><br><span class="line"><span class="string">     yw：拷贝一个单词</span></span><br><span class="line"><span class="string">     [n]yw / y[n]w:拷贝n个单词</span></span><br><span class="line"><span class="string">       </span></span><br><span class="line"><span class="string">     查找替换</span></span><br><span class="line"><span class="string">     :set hlsearch高亮显示</span></span><br><span class="line"><span class="string">     /xxx 查找xxx（配合高亮显示使用更佳）（也可使用正则表达式匹配）</span></span><br><span class="line"><span class="string">     匹配到后 n移动到下一个匹配项，N移动到下一个匹配项</span></span><br><span class="line"><span class="string">         </span></span><br><span class="line"><span class="string">     :s/aaa/bbb/选项（aaa替换为bbb，默认情况下只会替换第一个)</span></span><br><span class="line"><span class="string">     选项为g表示global全部替换</span></span><br><span class="line"><span class="string">     :x,ys/aaa/bbb/选项(将x到y行根据选项对aaa替换为bbb)</span></span><br><span class="line"><span class="string">     :%s/aaa/bbb/g（将该文件内所有aaa替换为bbb）</span></span><br><span class="line"><span class="string">插入模式：</span></span><br><span class="line"><span class="string">    i插入到光标的前面，a插入到光标的后面（append），o光标切换到下一行</span></span><br><span class="line"><span class="string">    I行首，A行尾，O前一行</span></span><br><span class="line"><span class="string"> 视图模式（用于选择范围）：</span></span><br><span class="line"><span class="string">         v：行选模式</span></span><br><span class="line"><span class="string">         ctrl+v：列选模式</span></span><br><span class="line"><span class="string">         选完后d删除y拷贝</span></span><br><span class="line"><span class="string">         </span></span><br><span class="line"><span class="string">   		批量/批量删除注释</span></span><br><span class="line"><span class="string">         1：将光标移动到要注释的第一行</span></span><br><span class="line"><span class="string">         2：进入列选模式选中范围</span></span><br><span class="line"><span class="string">         3：进入插入模式（I）</span></span><br><span class="line"><span class="string">         4：输入//</span></span><br><span class="line"><span class="string">         5：回到命令模式</span></span><br><span class="line"><span class="string">         删除时在列选模式下用d删除//</span></span><br><span class="line"><span class="string">         </span></span><br><span class="line"><span class="string">         gg=G 代码对齐命令	</span></span><br><span class="line"><span class="string">         </span></span><br><span class="line"><span class="string"> 文件操作</span></span><br><span class="line"><span class="string">          :w 保存</span></span><br><span class="line"><span class="string">          :q 退出</span></span><br><span class="line"><span class="string">          :q! 不保存强制退出</span></span><br><span class="line"><span class="string">          :wq 保存修改并退出</span></span><br><span class="line"><span class="string">              </span></span><br><span class="line"><span class="string">          :new / split / sp file 打开新的窗口	</span></span><br><span class="line"><span class="string">          ctrl+w移动到下一个窗口</span></span><br><span class="line"><span class="string">          :qa 退出所有窗口</span></span><br><span class="line"><span class="string">          :vnew / vsplit / vsp 左右分屏</span></span><br><span class="line"><span class="string">              </span></span><br><span class="line"><span class="string">          :tabnew 标签分屏（像浏览器一样的标签）</span></span><br><span class="line"><span class="string">          gt 下一个标签 gT下一个标签</span></span><br><span class="line"><span class="string">         </span></span><br><span class="line"><span class="string">		:set number 显示行（每次退出再重进会刷新）          </span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">           </span></span><br></pre></td></tr></table></figure>
+
+<h3 id="设置vim配置文件"><a href="#设置vim配置文件" class="headerlink" title="设置vim配置文件"></a>设置vim配置文件</h3><p>配置文件类似于预处理</p>
+<p>1.在家目录下创建.vimrc文件</p>
+<p>2.打开.vimrc文件</p>
+<p> 常用配置命令</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">syntax on<span class="comment">//语法检查</span></span><br><span class="line">set hlserach<span class="comment">//查找高亮显示</span></span><br><span class="line">set tabstop=<span class="number">4</span><span class="comment">//tab缩进为4个空格，默认8个</span></span><br><span class="line">set autoindent<span class="comment">//自动对齐</span></span><br></pre></td></tr></table></figure>
+
+<p>vimtutor vim练习手册</p>
+<h3 id="编译工具链"><a href="#编译工具链" class="headerlink" title="编译工具链"></a>编译工具链</h3><h4 id="两种大编译环境"><a href="#两种大编译环境" class="headerlink" title="两种大编译环境"></a>两种大编译环境</h4><p> ide: 集成开发环境(常用于windows),例如vs,clion,eclipse,xcode</p>
+<p>sdk（常用于linux, 全程software development kit,软件开发工具或编译工具链）	 </p>
+<p>​	sdk阵营一: gcc</p>
+<p>​	sdk阵营二: clang</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">gcc -v 查看gcc版本</span><br><span class="line">--target=x86_64-linux-gnu <span class="comment">//此为gcc对应平台架构</span></span><br><span class="line">Thread model: posix <span class="comment">//模型标准</span></span><br><span class="line">gcc version <span class="number">7.5</span><span class="number">.0</span> (Ubuntu <span class="number">7.5</span><span class="number">.0</span><span class="number">-3u</span>buntu1~<span class="number">18.04</span>)  <span class="comment">//gcc版本</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>一个程序从创建到可执行的过程</p>
+</blockquote>
+<p><img src="/2023/11/16/linux001/image-20230507185757060.png" alt="image-20230507185757060"></p>
+<h4 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">预处理文件常以.i结尾</span><br><span class="line">作用:执行预处理指令</span><br><span class="line">    <span class="meta">#<span class="keyword">include</span></span></span><br><span class="line">    <span class="meta">#<span class="keyword">define</span></span></span><br><span class="line">    <span class="meta">#<span class="keyword">define</span> xxx function 宏函数</span></span><br><span class="line">    <span class="meta">#<span class="keyword">if</span></span></span><br><span class="line">    <span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">    <span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">gcc -E xxx.c -o xxx.i 生成预处理文件 </span><br><span class="line">    E表示进行预处理 -o表示生成文件的名字</span><br><span class="line">   -D xxx 再定义一个宏xxx</span><br></pre></td></tr></table></figure>
+
+<p>源代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0<span class="comment">//宏if</span></span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">//宏if结束</span></span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>生成预处理文件</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">$gcc -E define.c -o define.i</span><br></pre></td></tr></table></figure>
+
+<p>文件内容</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">...<span class="comment">//以上省略各种预处理代码</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">int</span> <span class="title">ftrylockfile</span> <span class="params">(FILE *__stream)</span> __<span class="title">attribute__</span> <span class="params">((__nothrow__ , __leaf__))</span> </span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">void</span> <span class="title">funlockfile</span> <span class="params">(FILE *__stream)</span> __<span class="title">attribute__</span> <span class="params">((__nothrow__ , __leaf__))</span></span>;</span><br><span class="line"># <span class="number">868</span> <span class="string">&quot;/usr/include/stdio.h&quot;</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"></span><br><span class="line"># <span class="number">2</span> <span class="string">&quot;define.c&quot;</span> <span class="number">2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># <span class="number">3</span> <span class="string">&quot;define.c&quot;</span></span><br><span class="line"><span class="comment">//最终代码</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>假设源代码将#if 0改为#if N</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="meta">#<span class="keyword">if</span> N<span class="comment">//宏if</span></span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span> <span class="comment">//宏if结束</span></span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>因为N是不存在的</p>
+<p>所以生成的预处理文件会如此</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//最终代码</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>而如果使用命令 </p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">$gcc -E define.c -o define.i -D N <span class="comment">//-D为用命令宏定义了N,让N存在 </span></span><br></pre></td></tr></table></figure>
+
+<p>则生成的预处理文件</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//最终代码</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="built_in">printf</span>(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>用命令进行宏定义</strong>,<strong>方便程序员为不同平台不同客户生成不同代码</strong></li>
+</ul>
+<ul>
+<li>另一种宏开关</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> <span class="comment">//if not define</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<pre><code> 用法:当某个头文件不存在时可以用这种办法自己解决
+</code></pre>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __STDIO_H__ <span class="comment">//如果没有包含stdio.h</span></span></span><br><span class="line"><span class="comment">//进行定义接口</span></span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><p>作用:将c语言代码编译成汇编代码</p>
+<p>两种形式</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">gcc -S xxx.i -o xxx.s <span class="comment">//生成汇编文件</span></span><br><span class="line">gcc -S xxx.c -o xxx.s</span><br></pre></td></tr></table></figure>
+
+<p>源代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>生成的汇编代码 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">	.file	&quot;hello.c&quot; </span><br><span class="line">	.text</span><br><span class="line">	.section	.rodata</span><br><span class="line">.LC0:</span><br><span class="line">	.string	&quot;Hello World&quot;</span><br><span class="line">	.text</span><br><span class="line">	.globl	main</span><br><span class="line">	.type	main, @function</span><br><span class="line">main: #main函数起始</span><br><span class="line">.LFB0:</span><br><span class="line">	.cfi_startproc</span><br><span class="line">	pushq	%rbp #push入栈</span><br><span class="line">    #将rbp寄存器的值保存在栈帧中</span><br><span class="line">	.cfi_def_cfa_offset 16</span><br><span class="line">	.cfi_offset 6, -16</span><br><span class="line">	movq	%rsp, %rbp #mov移动 移入寄存器 赋值过程</span><br><span class="line">	#把rsp的值移动到rbp中</span><br><span class="line">	#rbq register base pointer栈帧基址寄存器</span><br><span class="line">	#rsp register stack pointer栈顶基址寄存器</span><br><span class="line">	.cfi_def_cfa_register 6</span><br><span class="line">	leaq	.LC0(%rip), %rdi#lea (load effective address 加载有效地址)</span><br><span class="line">	# .一般代表注释 lea加载rip的内容即lc0的内容到rdi中,rdi一般存放的是第一个参数的地址,即参数寄存器</span><br><span class="line">	movl	$0, %eax#eax 存放返回值 目前存放了0</span><br><span class="line">	call	printf@PLT #call函数调用 printf打印字符串</span><br><span class="line">	movl	$0, %eax #同上	</span><br><span class="line">	popq	%rbp #pop出栈 恢复rbp的的值</span><br><span class="line">	.cfi_def_cfa 7, 8</span><br><span class="line">	ret #ret函数返回 eax存放是0,于是返回0</span><br><span class="line">	#以%开头的都是寄存器</span><br><span class="line">	.cfi_endproc</span><br><span class="line">.LFE0:</span><br><span class="line">	.size	main, .-main</span><br><span class="line">	.ident	&quot;GCC: (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0&quot;</span><br><span class="line">	.section	.note.GNU-stack,&quot;&quot;,@progbits</span><br></pre></td></tr></table></figure>
+
+<p>上世纪70年代最常用cpu 8086</p>
+<p>信息</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">x86架构 数据总线16b,地址总线20b</span><br><span class="line">一个字长word 16b</span><br><span class="line">l - long word 32b</span><br><span class="line">q - qwadra 64b</span><br></pre></td></tr></table></figure>
+
+<h4 id="汇编转二进制"><a href="#汇编转二进制" class="headerlink" title="汇编转二进制"></a>汇编转二进制</h4><p>as命令</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">AS - <span class="function">the <span class="title">portable</span><span class="params">(可移植)</span> GNU <span class="title">assembler</span><span class="params">(汇编)</span>.</span></span><br></pre></td></tr></table></figure>
+
+<p>转换命令</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">as hello.s -o hello.o</span><br></pre></td></tr></table></figure>
+
+<p>生成的目标文件目前不能直接执行,通过nm命令可以列出所有符号 </p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">nm hello.o</span><br><span class="line">---</span><br><span class="line">                 U _GLOBAL_OFFSET_TABLE_</span><br><span class="line"><span class="number">0000000000000000</span> T main</span><br><span class="line">                 U printf</span><br><span class="line"><span class="comment">//U代表目前还不知道地址 unknow</span></span><br></pre></td></tr></table></figure>
+
+<p>​	广义的常用的生成命令(从.c文件一键生成到.o目标文件)</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">gcc -c hello.c -o hello.o</span><br></pre></td></tr></table></figure>
+
+<h4 id="反编译"><a href="#反编译" class="headerlink" title="反编译"></a>反编译</h4><p>objdump命令</p>
+<p>命令使用</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">objdump hello.o -d test.o</span><br></pre></td></tr></table></figure>
+
+<p>​	接着就会在控制台直接显示所有内容</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">hello.o：     文件格式 elf64-x86<span class="number">-64</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disassembly of section .text:</span><br><span class="line"></span><br><span class="line"><span class="number">0000000000000000</span> &lt;main&gt;:</span><br><span class="line">   <span class="number">0</span>:	<span class="number">55</span>                   	push   %rbp</span><br><span class="line">   <span class="number">1</span>:	<span class="number">48</span> <span class="number">89</span> e5             	mov    %rsp,%rbp</span><br><span class="line">   <span class="number">4</span>:	<span class="number">48</span> <span class="number">8</span>d <span class="number">3</span>d <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> 	lea    <span class="number">0x0</span>(%rip),%rdi        <span class="meta"># b <span class="string">&lt;main+0xb&gt;</span></span></span><br><span class="line">   b:	b8 <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>       	mov    $<span class="number">0x0</span>,%eax</span><br><span class="line">  <span class="number">10</span>:	e8 <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>       	callq  <span class="number">15</span> &lt;main+<span class="number">0x15</span>&gt;</span><br><span class="line">  <span class="number">15</span>:	b8 <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>       	mov    $<span class="number">0x0</span>,%eax</span><br><span class="line">  <span class="number">1</span>a:	<span class="number">5</span>d                   	pop    %rbp</span><br><span class="line">  <span class="number">1b</span>:	c3                   	retq </span><br></pre></td></tr></table></figure>
+
+<h4 id="链接-1"><a href="#链接-1" class="headerlink" title="链接"></a>链接</h4><p>作用:把函数的名字换成地址</p>
+<p>ld命令可以进行链接,但不推荐,可能一个函数里调用了另一个函数,这样用ld进行链接会很麻烦</p>
+<p>简便做法</p>
+<p>gcc命令 不加任何参数,间接调用,就可以把文件的各个函数链接起来</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">gcc hello.o -o hello</span><br></pre></td></tr></table></figure>
+
+<p>反汇编hello文件</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="number">0000000000201010</span> B __bss_start</span><br><span class="line"><span class="number">0000000000201010</span> b completed<span class="number">.7698</span></span><br><span class="line">                 w __cxa_finalize@@GLIBC_2<span class="number">.2</span><span class="number">.5</span></span><br><span class="line"><span class="number">0000000000201000</span> D __data_start</span><br><span class="line"><span class="number">0000000000201000</span> W data_start</span><br><span class="line"><span class="number">0000000000000570</span> t deregister_tm_clones</span><br><span class="line"><span class="number">0000000000000600</span> t __do_global_dtors_aux</span><br><span class="line"><span class="number">0000000000200</span>dc0 t __do_global_dtors_aux_fini_array_entry</span><br><span class="line"><span class="number">0000000000201008</span> D __dso_handle</span><br><span class="line"><span class="number">0000000000200</span>dc8 d _DYNAMIC</span><br><span class="line"><span class="number">0000000000201010</span> D _edata</span><br><span class="line"><span class="number">0000000000201018</span> B _end</span><br><span class="line"><span class="number">00000000000006e4</span> T _fini</span><br><span class="line"><span class="number">0000000000000640</span> t frame_dummy</span><br><span class="line"><span class="number">0000000000200</span>db8 t __frame_dummy_init_array_entry</span><br><span class="line"><span class="number">0000000000000844</span> r __FRAME_END__</span><br><span class="line"><span class="number">0000000000200f</span>b8 d _GLOBAL_OFFSET_TABLE_</span><br><span class="line">                 w __gmon_start__</span><br><span class="line"><span class="number">0000000000000700</span> r __GNU_EH_FRAME_HDR</span><br><span class="line"><span class="number">00000000000004f</span>0 T _init</span><br><span class="line"><span class="number">0000000000200</span>dc0 t __init_array_end</span><br><span class="line"><span class="number">0000000000200</span>db8 t __init_array_start</span><br><span class="line"><span class="number">00000000000006f</span>0 R _IO_stdin_used</span><br><span class="line">                 w _ITM_deregisterTMCloneTable</span><br><span class="line">                 w _ITM_registerTMCloneTable</span><br><span class="line"><span class="number">00000000000006e0</span> T __libc_csu_fini</span><br><span class="line"><span class="number">0000000000000670</span> T __libc_csu_init</span><br><span class="line">                 U __libc_start_main@@GLIBC_2<span class="number">.2</span><span class="number">.5</span></span><br><span class="line"><span class="number">000000000000064</span>a T main</span><br><span class="line">                 U printf@@GLIBC_2<span class="number">.2</span><span class="number">.5</span></span><br><span class="line"><span class="number">00000000000005b</span>0 t register_tm_clones</span><br><span class="line"><span class="number">0000000000000540</span> T _start</span><br><span class="line"><span class="number">0000000000201010</span> D __TMC_END__</span><br></pre></td></tr></table></figure>
+
+<p>发现所有函数都找到了对应的地址</p>
+<h4 id="执行可执行程序"><a href="#执行可执行程序" class="headerlink" title="执行可执行程序"></a>执行可执行程序</h4><p>只要当前用户对文件有x权限即可执行</p>
+<p>通过.&#x2F;filename执行可执行程序</p>
+<h4 id="库文件"><a href="#库文件" class="headerlink" title="库文件"></a>库文件</h4><p>即公用的工具,轮子,是一种特殊的.o文件,他人写好的并且公开发行的,自己拿来用</p>
+<p>库文件创建过程</p>
+<p><img src="/2023/11/16/linux001/image-20231122225617537.png" alt="image-20231122225617537"></p>
+<h4 id="静态库和动态库"><a href="#静态库和动态库" class="headerlink" title="静态库和动态库"></a>静态库和动态库</h4><p>静态库:轮子打包到产品中,比喻:家用汽车在生成时就已经组装到车里了,一般情况下不会改变 </p>
+<p><img src="/2023/11/16/linux001/image-20231122230038719.png" alt="image-20231122230038719"></p>
+<p>动态库:在运行的时候轮子才会组装起来,比喻:比赛时用的汽车,例如F4赛车,在赛场上需要跑起来时才会组装上</p>
+<p><img src="/2023/11/16/linux001/image-20231122230157337.png" alt="image-20231122230157337"></p>
+<p>对比:</p>
+<ul>
+<li><p>静态文件比较大,动态库在运行时才会组装,动态库更加小一些</p>
+</li>
+<li><p>部署起来静态文件更加容易 </p>
+</li>
+<li><p>动态库更加容易升级,因为轮子换起来更加方便,静态库轮子不方便更换</p>
+</li>
+</ul>
+<p>一般情况下,gcc生成的目标文件都是调用的动态库,加上参数-static调用静态库,根据ldd命令查看文件属性可知.so为动态库文件, .a为静态库文件</p>
+<h4 id="生成静态库"><a href="#生成静态库" class="headerlink" title="生成静态库"></a>生成静态库</h4><p>​	当我们调用一个只声明的函数时</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span>,<span class="type">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;add(3,4) = %d\n&quot;</span>,<span class="built_in">add</span>(<span class="number">3</span>,<span class="number">4</span>));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译为test.o的目标文件是可以通过的,但是通过gcc进行链接操作时出现了问题</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">test.o：在函数‘main’中：</span><br><span class="line">test.c:(.text+0xf)：对‘add’未定义的引用</span><br><span class="line">collect2: error: ld returned 1 exit status</span><br></pre></td></tr></table></figure>
+
+<p>此时我们再编译一个add.c文件</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span> lhs,<span class="type">int</span> rhs)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> lhs + rhs;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译同样可以通过,但进行gcc链接操作也出现了问题</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">(.text+0x20)：对‘main’未定义的引用</span><br><span class="line">collect2: error: ld returned 1 exit statu</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>test.o缺少了add函数的地址,add.o缺少了main函数的地址</li>
+</ul>
+<p>接下来我们手动链接test和add</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">gcc test.o add.o -o test</span><br></pre></td></tr></table></figure>
+
+<p>发现可以通过,且输出</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">add(3,4) = 7</span><br></pre></td></tr></table></figure>
+
+<p>整个过程简略图</p>
+<p><img src="/2023/11/16/linux001/image-20231123163047396.png" alt="image-20231123163047396"> </p>
+<h4 id="如何将add-o文件变为共享库"><a href="#如何将add-o文件变为共享库" class="headerlink" title="如何将add.o文件变为共享库"></a>如何将add.o文件变为共享库</h4><ol>
+<li><p>生成目标文件 </p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">$gcc -c add.c -o add.o</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>将目标文件打包成静态库文件</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">$ar crsv libadd.a add.o</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>生成了一个以libadd为前缀以.a为后缀的静态库文件</p>
+</li>
+<li><p>将文件移动到系统搜索目录中 (&#x2F;usr&#x2F;lib 切换为root用户)</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">$sudo cp libadd.a /usr/lib</span><br></pre></td></tr></table></figure>
+
+
+
+<p>检查此时是否已经复制到了当前目录中</p>
+</li>
+</ol>
+<p><img src="/2023/11/16/linux001/image-20231123164133408.png" alt="image-20231123164133408"></p>
+<ol start="5">
+<li><p>此时重新生成test目标文件</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">gcc test.o -o test -ladd   </span><br><span class="line">你的库叫什么名字在-l后面就加什么名字且不带空格</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看是否成功</p>
+<p><img src="/2023/11/16/linux001/image-20231123164646219.png" alt="image-20231123164646219"></p>
+</li>
+</ol>
+<h4 id="配置代码环境"><a href="#配置代码环境" class="headerlink" title="配置代码环境"></a>配置代码环境</h4><ol>
+<li><p>vimplus</p>
+</li>
+<li><p>vscode</p>
+<p>vscode环境配置详情见<a target="_blank" rel="noopener" href="http://8.140.253.116/2023/11/23/vscode%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5linux%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">vscode远程连接linux环境配置 | 涅槃豆の博客</a></p>
+</li>
+</ol>
+<h4 id="动态库链接"><a href="#动态库链接" class="headerlink" title="动态库链接"></a>动态库链接</h4><ol>
+<li>先把原先的add.c和test.c复制到dynamic文件夹中,进行我们动态库链接的热身</li>
+</ol>
+<p><img src="/2023/11/16/linux001/image-20231123174535292.png" alt="image-20231123174535292"></p>
+<ol start="2">
+<li><p>生成test.o目标文件</p>
+</li>
+<li><p>将add.c编译成目标文件</p>
+<blockquote>
+<p>(动态库的文件在运行时才会加载,运行时会存储在栈和堆中间的一部分区域中,称为共享库映射区)</p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">gcc add.c -o add.o -fpic</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>打包成库文件</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">gcc -shared add.o -o libadd.so</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>lib为固定前缀,so为固定后缀</p>
+</blockquote>
+</li>
+<li><p>将生成的libadd.so移动到&#x2F;usr&#x2F;lib目录中</p>
+<p> <img src="/2023/11/16/linux001/image-20231123175651898.png" alt="image-20231123175651898"></p>
+</li>
+<li><p>检查系统目录是否存在该文件</p>
+<p><img src="/2023/11/16/linux001/image-20231123175721381.png" alt="image-20231123175721381"></p>
+</li>
+<li><p>编译为可执行文件时加上-l参数(如果生成的还是静态库链接文件记得删除掉&#x2F;usr&#x2F;lib中的libadd.a文件)</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">gcc -c test.c -o test -ladd</span><br></pre></td></tr></table></figure>
+
+<p>通过ldd命令可以查看链接情况</p>
+<p><img src="/2023/11/16/linux001/image-20231123180057168.png" alt="image-20231123180057168"></p>
+</li>
+</ol>
+<p>​	如果此时删除 libadd.so,是没办法运行的,而再把so文件放回去,又可以运行了</p>
+<h4 id="软链接-符号链接"><a href="#软链接-符号链接" class="headerlink" title="软链接 符号链接"></a>软链接 符号链接</h4><p>软链接实际上就像快捷方式一样,里面的某个字符串存储了真实文件的路径</p>
+<p>在动态库文件需要更新时,可以不用删除lib目录下对应的so文件,而是将so文件改造为软链接的方式,链接到新版本的动态库文件</p>
+<p><img src="/2023/11/16/linux001/image-20231123181138535.png" alt="image-20231123181138535"></p>
+<p>通过ln命令进行软链接</p>
+<p><img src="/2023/11/16/linux001/image-20231123181447308.png" alt="image-20231123181447308"></p>
+<p>此时我们作为作者更新了我们的add.c源文件</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span> lhs,<span class="type">int</span> rhs)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> lhs + rhs + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再重新进行生成动态库文件的操作</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">$ gcc -c add.c -o add.o -fpic</span><br><span class="line">$ gcc -shared add.o -o libadd.so.0.2</span><br><span class="line">$ sudo cp libadd.so.0.2 /usr/lib</span><br></pre></td></tr></table></figure>
+
+<p>重新进行软链接操作</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">%cd /usr/lib</span><br><span class="line">$sudo rm libadd.so</span><br><span class="line">$sudo ln -s libadd.so.0.2 libadd.so</span><br></pre></td></tr></table></figure>
+
+<p>再次执行test可执行文件</p>
+<p><img src="/2023/11/16/linux001/image-20231123182323150.png" alt="image-20231123182323150"></p>
+<p>如果需要回滚版本只需要重新进行软链接</p>
+<h4 id="gcc其他选项"><a href="#gcc其他选项" class="headerlink" title="gcc其他选项"></a>gcc其他选项</h4><ul>
+<li><p>-D xxx 用命令宏定义一个xxx变量,相当于在代码内部首行添加一个#define xxx</p>
+</li>
+<li><p>-I &#x2F;xxx&#x2F;xxx 增加一个头文件搜索目录</p>
+</li>
+<li><p>编译优化 </p>
+<p>-O0  不优化</p>
+</li>
+</ul>
+<p>​	   -O1  </p>
+<pre><code>   -O2
+ 
+  -O3 1-&gt;3优化越来越深 
+</code></pre>
+<h3 id="gdb"><a href="#gdb" class="headerlink" title="gdb"></a>gdb</h3><h4 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h4><p>gdb和vs的调试很类似,但多了一种类似黑匣子的功能,可以记录信息 </p>
+<p>man的描述</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">gdb - The GNU Debugger</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>gdb使用时建议不要开优化,因为优化后会修改最终运行时的代码,调试时的汇编代码可能和源文件差别很大</p>
+<p>因此编译时需要加上两个参数</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">gcc filename -o xxx -O0 -g    (-g是记录调试信息)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>创建一个用于调试的代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(<span class="type">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;I&#x27;m func, i = %d\n&quot;</span>,i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> j = <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> arr[<span class="number">3</span>] =  &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">    <span class="type">int</span> *p;</span><br><span class="line">    arr[<span class="number">2</span>] = <span class="number">4</span>;</span><br><span class="line">    p = arr;</span><br><span class="line">    <span class="built_in">func</span>(j);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i &lt; <span class="number">5</span>;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;hello world!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译时记得加上参数</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">gcc test.c -o test -O0 -g</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>此时我们使用gdb命令即可进入调试</li>
+</ol>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">gdb test</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/11/16/linux001/image-20231124214042899.png" alt="image-20231124214042899"></p>
+<ol start="2">
+<li>此界面使用list可以默认显示10行代码</li>
+</ol>
+<p><img src="/2023/11/16/linux001/image-20231124214227553.png" alt="image-20231124214227553"></p>
+<ol start="3">
+<li>再输入list进入下一页</li>
+</ol>
+<p><img src="/2023/11/16/linux001/image-20231124214329799.png" alt="image-20231124214329799"></p>
+<ol start="4">
+<li>输入list1即可回到首行</li>
+</ol>
+<p><img src="/2023/11/16/linux001/image-20231124214408654.png" alt="image-20231124214408654"></p>
+<p>输入l也和list效果相同</p>
+<ol start="5">
+<li>如果一个程序有多个源文件,也可以指定是哪个文件,比如要查看test.c文件的第一行</li>
+</ol>
+<p>输入 l test.c:1</p>
+<p><img src="/2023/11/16/linux001/image-20231124214651757.png" alt="image-20231124214651757"></p>
+<ol start="6">
+<li>同样如果要找某个函数也可以做到,比如要找到main函数</li>
+</ol>
+<p>输入l test.c:main</p>
+<p><img src="/2023/11/16/linux001/image-20231124214955200.png" alt="image-20231124214955200"></p>
+<ol start="7">
+<li>如果要运行程序就输入 run或者r</li>
+</ol>
+<p><img src="/2023/11/16/linux001/image-20231124215143723.png" alt="image-20231124215143723"></p>
+<ol start="8">
+<li>打断点的方法    break或者b 同样可以指定行或者函数</li>
+</ol>
+<p><img src="/2023/11/16/linux001/image-20231124215407023.png" alt="image-20231124215407023"></p>
+<ol start="9">
+<li><p>在打完断点之后,发现不是一次运行完了</p>
+<p><img src="/2023/11/16/linux001/image-20231124215552111.png" alt="image-20231124215552111"></p>
+</li>
+<li><p>现在我们可以选择进行单步调试,也可以选择输入continue运行到下一个断点</p>
+<p><img src="/2023/11/16/linux001/image-20231124215716050.png" alt="image-20231124215716050"></p>
+</li>
+<li><p>进行单步调试可以输入next或者n或者 step或者s</p>
+<p><img src="/2023/11/16/linux001/image-20231124215937357.png" alt="image-20231124215937357"></p>
+</li>
+</ol>
+<p>​	此时我们发现他进入到了printf.c文件中,虽然没有找到,输入finish可以运行到printf函数运行执行完毕</p>
+<p><img src="/2023/11/16/linux001/image-20231124220158811.png" alt="image-20231124220158811">	再输入next刚好跳出func函数回到main函数里面</p>
+<p><img src="/2023/11/16/linux001/image-20231124220304872.png" alt="image-20231124220304872"></p>
+<ol start="12">
+<li><p>如果我们想在运行时删除掉某个断点,则可以用到delete命令,输入delete+空格+对应断点编号即可,而输入delete是删除所有断点</p>
+</li>
+<li><p>info break或者ib可以查看某行的断点信息,以及相应的命中次数</p>
+<p><img src="/2023/11/16/linux001/image-20231124221727038.png" alt="image-20231124221727038"></p>
+</li>
+<li><p>ingnore +空格+ 编号+ 次数 ,意味着忽略某号断点多少次</p>
+</li>
+</ol>
+<h4 id="在gdb查看监视"><a href="#在gdb查看监视" class="headerlink" title="在gdb查看监视"></a>在gdb查看监视</h4><ul>
+<li><p>输入print + 对应变量名可以查看变量数据</p>
+<p><img src="/2023/11/16/linux001/image-20231124222741554.png" alt="image-20231124222741554"></p>
+</li>
+<li><p>也可以进行对应计算</p>
+<p><img src="/2023/11/16/linux001/image-20231124222841137.png" alt="image-20231124222841137"></p>
+<ul>
+<li><p>用print显示会有些麻烦 ,而用display加变量名可以在运行时一直显示</p>
+<p><img src="/2023/11/16/linux001/image-20231124224030101.png" alt="image-20231124224030101"></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>​			info display可以查看监视信息,从而得知显示的变量的编号</p>
+<p>​			再输入undisplay + 编号即可不再显示该变量 </p>
+<h4 id="在gdb中查看内存"><a href="#在gdb中查看内存" class="headerlink" title="在gdb中查看内存"></a>在gdb中查看内存</h4><p>​	需要使用x命令,因为命令很复杂我们可以用help查看如何 使用</p>
+<p><img src="/2023/11/16/linux001/image-20231124224553569.png" alt="image-20231124224553569"></p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">(gdb)x/FMT ADDRESS</span><br><span class="line">	x/count + letter1 + letter2  </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>count代表要看多少单位</li>
+<li>letter1选择相应格式o,x,d,u,t,f,a,i,c,s,和printf格式输出类似</li>
+<li>letter2选择单位大小b,h,w,g分别为1b,2b,4b,8b</li>
+</ul>
+<p>例如我们要查看arr数组内存时</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">(gdb) x/3tw arr</span><br><span class="line">以二进制形式查看3个单位的变量,且每个变量大小为4字节,地址是arr的地址</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/11/16/linux001/image-20231124225246954.png" alt="image-20231124225246954"></p>
+<ul>
+<li>此时我们也可以通过内存地址查看系统是大端存储(低字节高地址)还是小端存储(低字节低地址)</li>
+</ul>
+<figure class="highlight gcode"><table><tr><td class="code"><pre><span class="line"><span class="comment">(gdb)</span>x/<span class="number">4</span>tb arr</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/11/16/linux001/image-20231124225614144.png" alt="image-20231124225614144"></p>
+<p>​	发现1存储在低地址,所以是大端存储</p>
+<p>​	如果感觉不明显可以修改数据然后查看</p>
+<p><img src="/2023/11/16/linux001/image-20231124230601336.png" alt="image-20231124230601336"></p>
+<p>​	此时很明显看到高位存储在低地址,确定是大端存储</p>
+<h4 id="检查崩溃程序"><a href="#检查崩溃程序" class="headerlink" title="检查崩溃程序"></a>检查崩溃程序</h4><p>黑匣子-&gt;core文件,存储了程序崩溃时刻内存的堆栈情况</p>
+<p>例如我们创建一个必定崩溃的代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> *p;</span><br><span class="line">    *p = <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/11/16/linux001/image-20231126224316202.png" alt="image-20231126224316202"></p>
+<p>编译也可以通过</p>
+<p>运行时发现,发生段错误,也就是指针指向出错了</p>
+<p><img src="/2023/11/16/linux001/image-20231126225110969.png" alt="image-20231126225110969"></p>
+<p>此时发现目录下多了一个core文件</p>
+<p><img src="/2023/11/16/linux001/image-20231126230825136.png" alt="image-20231126230825136"></p>
+<ul>
+<li><p>如果没有生成,可以按以下步骤操作</p>
+<ol>
+<li><p>查看core文件可以创建多大</p>
+<p><img src="/2023/11/16/linux001/image-20231126230518829.png" alt="image-20231126230518829"></p>
+</li>
+<li><p>如果core文件大小为0,根据core文件参数,目前显示是-c</p>
+<p>则我们输入以下命令(该修改只是暂时的,下次重新进入系统会恢复默认)</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">ulimit -c unlimited</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/11/16/linux001/image-20231126230750177.png" alt="image-20231126230750177"></p>
+<p>发现已经修改成功为unlimited,并再次执行代码查看目录是否有core文件</p>
+<p><img src="/2023/11/16/linux001/image-20231126230853232.png" alt="image-20231126230853232"></p>
+</li>
+</ol>
+</li>
+<li><p>如果还没有生成</p>
+<ol>
+<li><p>切换管理员 su root</p>
+</li>
+<li><p>输入以下命令 echo core &gt; &#x2F;proc&#x2F;sys&#x2F;kernel&#x2F;core_pattern</p>
+<p><img src="/2023/11/16/linux001/image-20231126225852754.png" alt="image-20231126225852754"></p>
+</li>
+<li><p>退回到当前用户 exit</p>
+<p>再次执行代码并查看是否有core文件 </p>
+<p><img src="/2023/11/16/linux001/image-20231126230934622.png" alt="image-20231126230934622"></p>
+</li>
+</ol>
+</li>
+</ul>
+<p>如果core文件生成成功,我们就可以通过gdb查看他是什么时候出错了</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">$gdb ./filename core</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/11/16/linux001/image-20231126231321023.png" alt="image-20231126231321023"></p>
+<p>我们再测试另一种情况,并通过gdb查看是哪里出错</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(<span class="type">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">func</span>(i + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">func</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译成功后运行</p>
+<p><img src="/2023/11/16/linux001/image-20231126231706285.png" alt="image-20231126231706285"></p>
+<p>通过gdb查看是哪里出错</p>
+<p><img src="/2023/11/16/linux001/image-20231126231901562.png" alt="image-20231126231901562"></p>
+<p>发现第三行出错,栈爆了</p>
+<h4 id="gdb加命令行参数"><a href="#gdb加命令行参数" class="headerlink" title="gdb加命令行参数"></a>gdb加命令行参数</h4><p>过去的c语言main函数中都有两个参数argc和argv[ ]</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc,<span class="type">char</span>* argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;argc = %d\n&quot;</span>,argc);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i &lt; argc;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">puts</span>(argv[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>我们可以在编译运行后查看argc和argv都是什么</p>
+<p><img src="/2023/11/16/linux001/image-20231126232914678.png" alt="image-20231126232914678"></p>
+</li>
+<li><p>当我们再运行时添加一些东西时,args和argv的值就会发生变化</p>
+<p><img src="/2023/11/16/linux001/image-20231126232958102.png" alt="image-20231126232958102"></p>
+</li>
+</ul>
+<p>也就是说args记录了argv数组有几个元素,argv数组记录了各个参数</p>
+<ul>
+<li><p>如果用gdb去启动</p>
+<p><img src="/2023/11/16/linux001/image-20231126233124517.png" alt="image-20231126233124517"></p>
+<p>使用set命令可以为其添加参数(非覆盖)</p>
+<p><img src="/2023/11/16/linux001/image-20231126233212352.png" alt="image-20231126233212352"></p>
+</li>
+</ul>
+<h2 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h2><h3 id="makefile增量编译"><a href="#makefile增量编译" class="headerlink" title="makefile增量编译"></a>makefile增量编译</h3><p>如果要编译一个系统需要很长时间,且这段时间程序员因为系统cpu等硬件正在满负载工作无法做任何事情,因此需要增量编译来减少编译浪费时间</p>
+<p> 增量编译首先要维持一种”目标-依赖”关系,构成树的结构,改变某个节点只会影响他的子树</p>
+<h4 id="makefile的实现"><a href="#makefile的实现" class="headerlink" title="makefile的实现"></a>makefile的实现</h4><ol>
+<li><p>文件名必须是Makefile&#x2F;makefile</p>
+</li>
+<li><p>规则的集合:由目标文件的名称,依赖文件的名称,命令,分号作为目标和依赖的分隔符</p>
+<p><img src="/2023/11/16/linux001/image-20231127145402132.png" alt="image-20231127145402132"></p>
+</li>
+<li><p>把最终要生成的文件作为第一个规则</p>
+</li>
+</ol>
+<ul>
+<li>创建main.c和add.c文件</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span>,<span class="type">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;add(3,4) = %d\n&quot;</span>,<span class="built_in">add</span>(<span class="number">3</span>,<span class="number">4</span>));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span> lhs,<span class="type">int</span> rhs)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> lhs + rhs;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>在该目录下生成makefile文件并编辑(注意分号分隔符,和命令需要tab键按下后编辑)</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">main:main.o add.o</span></span><br><span class="line">	gcc main.o add.o -o main</span><br><span class="line"><span class="section">main.o:main.c</span></span><br><span class="line">	gcc -c main.c -o main.o</span><br><span class="line"><span class="section">add.o:add.c</span></span><br><span class="line">	gcc -c add.c -o add.o</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>保证文件的格式都是正确之后,输入make命令,发现需要生成的文件都生成了</p>
+<p><img src="/2023/11/16/linux001/image-20231127150629145.png" alt="image-20231127150629145"></p>
+</li>
+<li><p>当源文件比目标文件修改时间要新的话,再使用make命令就会进行增量编译</p>
+<p>比如我修改了add.c</p>
+<p><img src="/2023/11/16/linux001/image-20231127151020144.png" alt="image-20231127151020144"></p>
+</li>
+</ul>
+<p>​		使用make命令,会发现add.o</p>
+<p>​		<img src="/2023/11/16/linux001/image-20231127151051257.png" alt="image-20231127151051257"></p>
+<p>​		如果要执行特定指令 可以在make后加上对应目标文件,例如 make main.o则是以main.o作为目标起点</p>
+<h4 id="伪目标"><a href="#伪目标" class="headerlink" title="伪目标"></a>伪目标</h4><p>​	特点:目标不存在,执行命令是不会生成目标文件的</p>
+<blockquote>
+<p> 因为目标不存在,所以导致了每次make都一定执行他的命令</p>
+</blockquote>
+<p>​	修改makefile文件,添加一个clean目标文件</p>
+<p>​	解释原理:原先的main和main.o,add.o都有对应的依赖文件,形成的树结构如下</p>
+<p><img src="/2023/11/16/linux001/image-20231127154632409.png" alt="image-20231127154632409"></p>
+<p>而clean没有依赖文件,当输入make clean以clean为起点时</p>
+<p><img src="/2023/11/16/linux001/image-20231127154745236.png" alt="image-20231127154745236"></p>
+<p>clean只会执行属于自己的命令,没有依赖文件也就是没有子树所以main,main.o,add.o的命令都不会执行</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">main:main.o add.o</span></span><br><span class="line">	gcc main.o add.o -o main</span><br><span class="line"><span class="section">main.o:main.c</span></span><br><span class="line">	gcc -c main.c -o main.o</span><br><span class="line"><span class="section">add.o:add.c</span></span><br><span class="line">	gcc -c add.c -o add.o </span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm -f main.o add.o main</span><br></pre></td></tr></table></figure>
+
+<p>在make时加上clean,每次都会执行对应命令</p>
+<p><img src="/2023/11/16/linux001/image-20231127153747597.png" alt="image-20231127153747597"></p>
+<h4 id="全量编译"><a href="#全量编译" class="headerlink" title="全量编译"></a>全量编译</h4><p>可以在makefile文件中加入一些东西</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">main:main.o add.o</span></span><br><span class="line">	gcc main.o add.o -o main</span><br><span class="line"><span class="section">main.o:main.c</span></span><br><span class="line">	gcc -c main.c -o main.o</span><br><span class="line"><span class="section">add.o:add.c</span></span><br><span class="line">	gcc -c add.c -o add.o </span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm -f main.o add.o main</span><br><span class="line"><span class="section">rebuild:clean main</span></span><br></pre></td></tr></table></figure>
+
+<p>rebulid的依赖文件为clean和main,先依赖的clean因此会先执行clean的命令,将main.o,add.o和main都删除,然后再执行main命令,又依次生成了main.o,add.o,main</p>
+<p><img src="/2023/11/16/linux001/image-20231127155138209.png" alt="image-20231127155138209"></p>
+<p>这样的删除全部生成文件然后又重新生成的操作成为全量编译</p>
+<ul>
+<li><p>为了makefile规范,我们通常在伪目标之前声明一下</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">main:main.o add.o</span></span><br><span class="line">	gcc main.o add.o -o main</span><br><span class="line"><span class="section">main.o:main.c</span></span><br><span class="line">	gcc -c main.c -o main.o</span><br><span class="line"><span class="section">add.o:add.c</span></span><br><span class="line">	gcc -c add.c -o add.o </span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>:clean rebuild</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm -f main.o add.o main</span><br><span class="line"><span class="section">rebuild:clean main</span></span><br></pre></td></tr></table></figure>
+
+<p>.PHONY就是声明clean和rebuild是伪目标,没有任何作用</p>
+</li>
+</ul>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>makefile原内容</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">main:main.o add.o</span></span><br><span class="line">	gcc main.o add.o -o main</span><br><span class="line"><span class="section">main.o:main.c</span></span><br><span class="line">	gcc -c main.c -o main.o</span><br><span class="line"><span class="section">add.o:add.c</span></span><br><span class="line">	gcc -c add.c -o add.o </span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>:clean rebuild</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm -f main.o add.o main</span><br><span class="line"><span class="section">rebuild:clean main</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ol>
+<li><p>自定义变量:   变量名:&#x3D;值   (在makefile中,变量中所有值都是字符串类型)</p>
+<p>引用变量:      $(变量名)</p>
+<p>使用自定义变量后就可以更改原来的内容了</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">OUT:=main <span class="comment">#定义变量</span></span><br><span class="line">OBJS:= main.o add.o</span><br><span class="line"></span><br><span class="line"><span class="variable">$(OUT)</span>:<span class="variable">$(OBJS)</span></span><br><span class="line">	gcc <span class="variable">$(OBJS)</span> -o main</span><br><span class="line"><span class="section">main.o:main.c</span></span><br><span class="line">	gcc -c main.c -o main.o</span><br><span class="line"><span class="section">add.o:add.c</span></span><br><span class="line">	gcc -c add.c -o add.o </span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>:clean rebuild</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm -f <span class="variable">$(OBJS)</span> <span class="variable">$(OUT)</span></span><br><span class="line"><span class="section">rebuild:clean main </span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>预定义变量:预先就有值的意思</p>
+<p><img src="/2023/11/16/linux001/image-20231127160351326.png" alt="image-20231127160351326"></p>
+<p> 根据预定义变量我们可以把gcc替换成$(CC),rm-f替换成$(RM)</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">OUT:=main</span><br><span class="line">OBJS:= main.o add.o</span><br><span class="line"> </span><br><span class="line"><span class="variable">$(OUT)</span>:<span class="variable">$(OBJS)</span></span><br><span class="line">	<span class="variable">$(CC)</span> <span class="variable">$(OBJS)</span> -o main</span><br><span class="line"><span class="section">main.o:main.c</span></span><br><span class="line">	<span class="variable">$(CC)</span> -c main.c -o main.o</span><br><span class="line"><span class="section">add.o:add.c</span></span><br><span class="line">	<span class="variable">$(CC)</span> -c add.c -o add.o </span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>:clean rebuild</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	<span class="variable">$(RM)</span> <span class="variable">$(OBJS)</span> <span class="variable">$(OUT)</span> </span><br><span class="line"><span class="section">rebuild:clean main </span></span><br></pre></td></tr></table></figure>
+
+<p>使用make rebuild发现使用的是cc而不是gcc</p>
+<p><img src="/2023/11/16/linux001/image-20231127160726607.png" alt="image-20231127160726607"></p>
+<p>我们可以修改预定义变量的值</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">CC:=gcc</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/11/16/linux001/image-20231127160826075.png" alt="image-20231127160826075"></p>
+</li>
+<li><p>自动变量:同一变量名根据规则变化自动变化,类似auto</p>
+<p><img src="/2023/11/16/linux001/image-20231127160927455.png" alt="image-20231127160927455"></p>
+<p>根据表格我们可以如此修改</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">OUT:=main</span><br><span class="line">OBJS:= main.o add.o</span><br><span class="line">CC:=gcc</span><br><span class="line"><span class="variable">$(OUT)</span>:<span class="variable">$(OBJS)</span></span><br><span class="line">	<span class="variable">$(CC)</span> <span class="variable">$^</span> -o <span class="variable">$@</span></span><br><span class="line"><span class="section">main.o:main.c</span></span><br><span class="line">	<span class="variable">$(CC)</span> -c <span class="variable">$^</span> -o <span class="variable">$@</span></span><br><span class="line"><span class="section">add.o:add.c</span></span><br><span class="line">	<span class="variable">$(CC)</span> -c <span class="variable">$^</span> -o <span class="variable">$@</span> </span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>:clean rebuild</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	<span class="variable">$(RM)</span> <span class="variable">$(OBJS)</span> <span class="variable">$(OUT)</span> </span><br><span class="line"><span class="section">rebuild:clean main </span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="用-字符管理格式关系"><a href="#用-字符管理格式关系" class="headerlink" title="用%字符管理格式关系"></a>用%字符管理格式关系</h4><ul>
+<li><p>通过观察我们可以发现main.o和add.o的目标文件,依赖关系,命令格式是完全相同的,我们可以用%来合并为一个,%负责从上一个规则的依赖关系的字符串中把数据匹配出来</p>
+<p>我们可以如下修改</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">OUT:=main</span><br><span class="line">OBJS:= main.o add.o</span><br><span class="line">CC:=gcc</span><br><span class="line"><span class="variable">$(OUT)</span>:<span class="variable">$(OBJS)</span></span><br><span class="line">	<span class="variable">$(CC)</span> <span class="variable">$^</span> -o <span class="variable">$@</span></span><br><span class="line"><span class="section">%.o:%.c</span></span><br><span class="line">	<span class="variable">$(CC)</span> -c <span class="variable">$^</span> -o <span class="variable">$@</span></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>:clean rebuild</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	<span class="variable">$(RM)</span> <span class="variable">$(OBJS)</span> <span class="variable">$(OUT)</span> </span><br><span class="line"><span class="section">rebuild:clean main </span></span><br></pre></td></tr></table></figure>
+
+<p>%.o第一次匹配到的是main.o,此时的%代表的就是main,执行完这一个规则后再次匹配,匹配到add.o,此时%就是add,如此往复知道没有可匹配的结束这一整个大规则</p>
+</li>
+<li><p>如果我们想要新增一个函数在main中调用</p>
+<p>main.c</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span>,<span class="type">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">sub</span><span class="params">(<span class="type">int</span>,<span class="type">int</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;add(3,4) = %d\n&quot;</span>,<span class="built_in">add</span>(<span class="number">3</span>,<span class="number">4</span>));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sub(3,4) = %d\n&quot;</span>,<span class="built_in">sub</span>(<span class="number">3</span>,<span class="number">4</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>sub.c</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">sub</span><span class="params">(<span class="type">int</span> lhs,<span class="type">int</span> rhs)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> lhs - rhs;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此时我们直接在makefile文件中的OBJS变量中加上sub.o即可</p>
+<p>执行make并运行main</p>
+<p><img src="/2023/11/16/linux001/image-20231127200102670.png" alt="image-20231127200102670"></p>
+<p><img src="/2023/11/16/linux001/image-20231127200132186.png" alt="image-20231127200132186"></p>
+</li>
+</ul>
+<p>​		可以看出makefile方便了我们程序员进行编译的操作</p>
+<h4 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a>内置函数</h4><p>​	如果觉得增量编译一个.c文件需要修改一行还是很麻烦,那么还有我们的内置函数</p>
+<ul>
+<li><p>wildcard通配符</p>
+<p>从当前目录所有文件中取出符合要求的文件名</p>
+<p>因此我们可以创建一个变量,通过通配符获取当前目录所有的.c文件</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">SRCS:=<span class="variable">$(<span class="built_in">wildcard</span> *.c)</span></span><br></pre></td></tr></table></figure>
+
+<p>如果相要检查是否完全获取到,可以通过伪目标的命令来查看</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">all:</span></span><br><span class="line">	echo <span class="variable">$(SRCS)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">OUT:=main</span><br><span class="line">SRCS:=<span class="variable">$(<span class="built_in">wildcard</span> *.c)</span></span><br><span class="line">OBJS:= main.o add.o sub.o</span><br><span class="line">CC:=gcc</span><br><span class="line"><span class="variable">$(OUT)</span>:<span class="variable">$(OBJS)</span></span><br><span class="line">	<span class="variable">$(CC)</span> <span class="variable">$^</span> -o <span class="variable">$@</span></span><br><span class="line"><span class="section">%.o:%.c</span></span><br><span class="line">	<span class="variable">$(CC)</span> -c <span class="variable">$^</span> -o <span class="variable">$@</span></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>:clean rebuild all</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	<span class="variable">$(RM)</span> <span class="variable">$(OBJS)</span> <span class="variable">$(OUT)</span> </span><br><span class="line"><span class="section">rebuild:clean main 	</span></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">	echo <span class="variable">$(SRCS)</span></span><br></pre></td></tr></table></figure>
+
+<p>通过make all命令检查</p>
+<p><img src="/2023/11/16/linux001/image-20231127202053979.png" alt="image-20231127202053979"></p>
+</li>
+<li><p>patsubst(pattern substitute)模式匹配</p>
+<p>类似一种函数的形式,将指定变量中.c后缀的替换成.o后缀赋值到当前命令中</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">OBJS:=<span class="variable">$(<span class="built_in">patsubst</span> %.c,%.o,%(SRCS)</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>此时即使我们的代码有调整,有新增的.c文件,makefile也不需要修改任何东西</strong></p>
+<p><strong>我们只需要使用make命令即可完成之前的一系列操作</strong></p>
+</li>
+</ul>
+<h4 id="最终版本"><a href="#最终版本" class="headerlink" title="最终版本"></a>最终版本</h4><figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">OUT:=main</span><br><span class="line">SRCS:=<span class="variable">$(<span class="built_in">wildcard</span> *.c)</span></span><br><span class="line"><span class="comment">#OBJS:= main.o add.o sub.o</span></span><br><span class="line">OBJS:=<span class="variable">$(<span class="built_in">patsubst</span> %.c,%.o,<span class="variable">$(SRCS)</span>)</span></span><br><span class="line">CC:=gcc</span><br><span class="line"><span class="variable">$(OUT)</span>:<span class="variable">$(OBJS)</span></span><br><span class="line">	<span class="variable">$(CC)</span> <span class="variable">$^</span> -o <span class="variable">$@</span></span><br><span class="line"><span class="section">%.o:%.c</span></span><br><span class="line">	<span class="variable">$(CC)</span> -c <span class="variable">$^</span> -o <span class="variable">$@</span></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>:clean rebuild all</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	<span class="variable">$(RM)</span> <span class="variable">$(OBJS)</span> <span class="variable">$(OUT)</span> </span><br><span class="line"><span class="section">rebuild:clean main 	</span></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">	echo <span class="variable">$(SRCS)</span></span><br></pre></td></tr></table></figure>
+
+<p>make命令</p>
+<p><img src="/2023/11/16/linux001/image-20231127202834689.png" alt="image-20231127202834689"></p>
+<h3 id="第二版makefile"><a href="#第二版makefile" class="headerlink" title="第二版makefile"></a>第二版makefile</h3><p>之前的makefile最终都是只为编译一个最终的目标文件</p>
+<p>而当我们正常使用时,一般都会想每个代码分别编译运行,让每个代码单独编译链接</p>
+<p><img src="/2023/11/16/linux001/image-20231127203918841.png" alt="image-20231127203918841"></p>
+<p>最大的区别是我们可以通过伪目标一次生成不同的目标文件,通过make all实现一次编译多个文件</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">SRCS:=<span class="variable">$(<span class="built_in">wildcard</span> *.c)</span></span><br><span class="line">EXES:=<span class="variable">$(<span class="built_in">patsubst</span> %.c,%,<span class="variable">$(SRCS)</span>)</span></span><br><span class="line">CC:=gcc</span><br><span class="line"><span class="section">all:<span class="variable">$(EXES)</span></span></span><br><span class="line"><span class="section">%:%.c</span></span><br><span class="line">	<span class="variable">$(CC)</span> <span class="variable">$^</span> -o <span class="variable">$@</span></span><br></pre></td></tr></table></figure>
+
+<p>此时我们发现3个分别输出1,2,3的文件一次编译生成了<img src="/2023/11/16/linux001/image-20231127204756602.png" alt="image-20231127204756602"></p>
+<ul>
+<li><p>如果说我们代码的源文件在不同目录下,例如存放makefile在根目录下,源代码在根目录的src目录下,比如我们在wildcard下做如此操作即可</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">SRCS:=<span class="variable">$(<span class="built_in">wildcard</span> src/*.c)</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://niepandou.github.io">niepandou</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://niepandou.github.io/2023/11/16/linux001/">http://niepandou.github.io/2023/11/16/linux001/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://niepandou.github.io" target="_blank">涅槃豆の博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/linux/">linux</a><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/">计算机</a></div><div class="post_share"><div class="social-share" data-image="/post_img/0.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.png" target="_blank"><img class="post-qr-code-img" src="/img/wechat.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/11/22/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E6%80%BB%E7%AC%94%E8%AE%B0/" title="算法基础总笔记（建议收藏，持续更新）"><img class="cover" src="/post_img/12.jpg" onerror="onerror=null;src='/img/index_img/20231118202750.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">算法基础总笔记（建议收藏，持续更新）</div></div></a></div><div class="next-post pull-right"><a href="/2023/11/16/c++%E5%88%9D%E6%9C%9F%E7%AC%94%E8%AE%B0%EF%BC%88%E8%B6%85%E8%AF%A6%E7%BB%86%E8%B6%85%E5%AE%8C%E6%95%B4%EF%BC%89/" title="c++初期笔记（超详细超完整）"><img class="cover" src="/post_img/8.jpg" onerror="onerror=null;src='/img/index_img/20231118202750.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">c++初期笔记（超详细超完整）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/11/27/linux%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="linux第二部分-操作系统"><img class="cover" src="/./post_img/2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-27</div><div class="title">linux第二部分-操作系统</div></div></a></div><div><a href="/2023/11/16/%E8%99%9A%E6%8B%9F%E6%9C%BAUbuntu%E7%BD%91%E7%BB%9C%E5%BC%80%E6%9C%BA%E6%88%96%E7%AA%81%E7%84%B6%E6%96%AD%E8%BF%9E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" title="虚拟机Ubuntu网络开机或突然断连解决方法"><img class="cover" src="/post_img/5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-16</div><div class="title">虚拟机Ubuntu网络开机或突然断连解决方法</div></div></a></div><div><a href="/2023/11/23/vscode%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5linux%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="vscode远程连接linux环境配置"><img class="cover" src="/./post_img/3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-11-23</div><div class="title">vscode远程连接linux环境配置</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81OTQyNS8zNTg4Nw=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">niepandou</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">42</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/niepandou"><i class="fab fa-github"></i><span>直达Github</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/niepandou" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:niepandou@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://x.com/niepandou?t=Sp7s7bbF2M0ASB0bqgk8Xw&amp;s=09" target="_blank" title="Twitter"><i class="fas fa-brands fa-twitter" style="color: #00acee;"></i></a><a class="social-icon" href="https://qm.qq.com/q/CqmqMMscF4" target="_blank" title="Tencent QQ"><i class="fas fa-brands fa-qq" style="color: #00acee;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来我家玩!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86linux"><span class="toc-number">1.</span> <span class="toc-text">初步认识linux</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.1.</span> <span class="toc-text">网络设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E9%9D%99%E6%80%81IP%E5%9C%B0%E5%9D%80"><span class="toc-number">1.2.</span> <span class="toc-text">设置静态IP地址</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%EF%BC%88%E8%BF%9E%E6%8E%A5%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">远程连接（连接虚拟机）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AAc-cpp%E6%96%87%E4%BB%B6%E5%B9%B6%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C"><span class="toc-number">1.2.2.</span> <span class="toc-text">建立一个c&#x2F;cpp文件并编译运行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linux%E5%86%85%E6%A0%B8"><span class="toc-number">1.3.</span> <span class="toc-text">linux内核</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E5%AD%90%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.4.</span> <span class="toc-text">用户子系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#banner%E6%89%93%E5%8D%B0%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.4.1.</span> <span class="toc-text">banner打印字符串</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%AD%90%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.1.</span> <span class="toc-text">文件子系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%8E%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.1.</span> <span class="toc-text">文件夹与文件操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E9%85%8D%E7%AC%A6%EF%BC%88wild-card%EF%BC%89"><span class="toc-number">2.1.2.</span> <span class="toc-text">通配符（wild card）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cp%EF%BC%88copy%EF%BC%89"><span class="toc-number">2.1.3.</span> <span class="toc-text">cp（copy）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mv"><span class="toc-number">2.1.4.</span> <span class="toc-text">mv</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rm"><span class="toc-number">2.1.5.</span> <span class="toc-text">rm</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-number">2.2.</span> <span class="toc-text">链接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E9%93%BE%E6%8E%A5"><span class="toc-number">2.2.1.</span> <span class="toc-text">硬链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E9%93%BE%E6%8E%A5%EF%BC%88%E7%AC%A6%E5%8F%B7%E9%93%BE%E6%8E%A5%EF%BC%89"><span class="toc-number">2.2.2.</span> <span class="toc-text">软链接（符号链接）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ln%EF%BC%88link%EF%BC%89"><span class="toc-number">2.2.3.</span> <span class="toc-text">ln（link）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6"><span class="toc-number">2.3.</span> <span class="toc-text">查找文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#locate"><span class="toc-number">2.3.1.</span> <span class="toc-text">locate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#which%EF%BC%88%E5%B8%B8%E7%94%A8%EF%BC%89"><span class="toc-number">2.3.2.</span> <span class="toc-text">which（常用）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#find"><span class="toc-number">2.3.3.</span> <span class="toc-text">find</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%99%90"><span class="toc-number">2.4.</span> <span class="toc-text">权限</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#chmod%EF%BC%88change-mode%EF%BC%89%E6%94%B9%E5%8F%98%E6%9D%83%E9%99%90"><span class="toc-number">2.4.1.</span> <span class="toc-text">chmod（change mode）改变权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#umask%EF%BC%88%E6%96%87%E4%BB%B6%E6%8E%A9%E7%A0%81%EF%BC%89"><span class="toc-number">2.4.2.</span> <span class="toc-text">umask（文件掩码）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6"><span class="toc-number">2.5.</span> <span class="toc-text">查看文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6%EF%BC%88%E4%B8%80%E8%88%AC%E4%B8%BA%E9%9D%9E%E8%B4%9F%E6%95%B4%E6%95%B0%EF%BC%89"><span class="toc-number">2.5.1.</span> <span class="toc-text">文件描述符（一般为非负整数）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cat%EF%BC%88%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%EF%BC%89"><span class="toc-number">2.5.2.</span> <span class="toc-text">cat（查看文件内容）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#echo%EF%BC%88%E6%89%93%E5%8D%B0%E4%B8%80%E8%A1%8C%E6%96%87%E6%9C%AC%EF%BC%89"><span class="toc-number">2.5.3.</span> <span class="toc-text">echo（打印一行文本）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#head%EF%BC%88%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E7%9A%84%E5%A4%B4%E5%87%A0%E8%A1%8C%E4%BF%A1%E6%81%AF%EF%BC%89"><span class="toc-number">2.5.4.</span> <span class="toc-text">head（显示文件的头几行信息）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tail%EF%BC%88%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E7%9A%84%E5%90%8E%E5%87%A0%E8%A1%8C%E4%BF%A1%E6%81%AF%EF%BC%89"><span class="toc-number">2.5.5.</span> <span class="toc-text">tail（显示文件的后几行信息）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#more-less%EF%BC%88%E5%8D%95%E9%A1%B5%E6%B5%8F%E8%A7%88%E6%96%87%E4%BB%B6%EF%BC%89"><span class="toc-number">2.5.6.</span> <span class="toc-text">more&#x2F;less（单页浏览文件）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">2.6.</span> <span class="toc-text">正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sort"><span class="toc-number">2.6.1.</span> <span class="toc-text">sort</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xargs"><span class="toc-number">2.6.2.</span> <span class="toc-text">xargs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#file"><span class="toc-number">2.6.3.</span> <span class="toc-text">file</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wc%EF%BC%88what-count%EF%BC%89"><span class="toc-number">2.6.4.</span> <span class="toc-text">wc（what count）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iconv"><span class="toc-number">2.6.5.</span> <span class="toc-text">iconv</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F-1"><span class="toc-number">2.6.6.</span> <span class="toc-text">正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gerp-%E6%90%9C%E7%B4%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="toc-number">2.6.7.</span> <span class="toc-text">gerp(搜索文件内容)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#alias"><span class="toc-number">2.6.8.</span> <span class="toc-text">alias</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E5%92%8C%E5%8E%8B%E7%BC%A9"><span class="toc-number">2.6.9.</span> <span class="toc-text">打包和压缩</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scp"><span class="toc-number">2.7.</span> <span class="toc-text">scp</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#df%EF%BC%88disk-full%E6%9F%A5%E7%9C%8B%E7%A3%81%E7%9B%98%E7%8A%B6%E6%80%81%EF%BC%89"><span class="toc-number">2.7.1.</span> <span class="toc-text">df（disk full查看磁盘状态）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#du%EF%BC%88disk-used%E6%9F%A5%E7%9C%8B%E7%A3%81%E7%9B%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%EF%BC%89"><span class="toc-number">2.7.2.</span> <span class="toc-text">du（disk used查看磁盘使用情况）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scp%EF%BC%88s-cp%E8%BF%9C%E7%A8%8B%E6%8B%B7%E8%B4%9Dsecure-copy%EF%BC%89"><span class="toc-number">2.7.3.</span> <span class="toc-text">scp（s_cp远程拷贝secure copy）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ssh-keygen%E5%AF%86%E9%92%A5"><span class="toc-number">2.7.4.</span> <span class="toc-text">ssh-keygen密钥</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%BC%96%E8%AF%91"><span class="toc-number">3.</span> <span class="toc-text">代码编译</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-number">3.1.</span> <span class="toc-text">编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vim"><span class="toc-number">3.1.1.</span> <span class="toc-text">vim</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AEvim%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">3.1.2.</span> <span class="toc-text">设置vim配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E9%93%BE"><span class="toc-number">3.1.3.</span> <span class="toc-text">编译工具链</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%A4%E7%A7%8D%E5%A4%A7%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83"><span class="toc-number">3.1.3.1.</span> <span class="toc-text">两种大编译环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">3.1.3.2.</span> <span class="toc-text">预处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E8%AF%91"><span class="toc-number">3.1.3.3.</span> <span class="toc-text">编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B1%87%E7%BC%96%E8%BD%AC%E4%BA%8C%E8%BF%9B%E5%88%B6"><span class="toc-number">3.1.3.4.</span> <span class="toc-text">汇编转二进制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E7%BC%96%E8%AF%91"><span class="toc-number">3.1.3.5.</span> <span class="toc-text">反编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5-1"><span class="toc-number">3.1.3.6.</span> <span class="toc-text">链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-number">3.1.3.7.</span> <span class="toc-text">执行可执行程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%93%E6%96%87%E4%BB%B6"><span class="toc-number">3.1.3.8.</span> <span class="toc-text">库文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%BA%93%E5%92%8C%E5%8A%A8%E6%80%81%E5%BA%93"><span class="toc-number">3.1.3.9.</span> <span class="toc-text">静态库和动态库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E5%BA%93"><span class="toc-number">3.1.3.10.</span> <span class="toc-text">生成静态库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%B0%86add-o%E6%96%87%E4%BB%B6%E5%8F%98%E4%B8%BA%E5%85%B1%E4%BA%AB%E5%BA%93"><span class="toc-number">3.1.3.11.</span> <span class="toc-text">如何将add.o文件变为共享库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%A0%81%E7%8E%AF%E5%A2%83"><span class="toc-number">3.1.3.12.</span> <span class="toc-text">配置代码环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E5%BA%93%E9%93%BE%E6%8E%A5"><span class="toc-number">3.1.3.13.</span> <span class="toc-text">动态库链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AF%E9%93%BE%E6%8E%A5-%E7%AC%A6%E5%8F%B7%E9%93%BE%E6%8E%A5"><span class="toc-number">3.1.3.14.</span> <span class="toc-text">软链接 符号链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gcc%E5%85%B6%E4%BB%96%E9%80%89%E9%A1%B9"><span class="toc-number">3.1.3.15.</span> <span class="toc-text">gcc其他选项</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gdb"><span class="toc-number">3.1.4.</span> <span class="toc-text">gdb</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E8%AF%95"><span class="toc-number">3.1.4.1.</span> <span class="toc-text">调试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8gdb%E6%9F%A5%E7%9C%8B%E7%9B%91%E8%A7%86"><span class="toc-number">3.1.4.2.</span> <span class="toc-text">在gdb查看监视</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8gdb%E4%B8%AD%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98"><span class="toc-number">3.1.4.3.</span> <span class="toc-text">在gdb中查看内存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E5%B4%A9%E6%BA%83%E7%A8%8B%E5%BA%8F"><span class="toc-number">3.1.4.4.</span> <span class="toc-text">检查崩溃程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gdb%E5%8A%A0%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0"><span class="toc-number">3.1.4.5.</span> <span class="toc-text">gdb加命令行参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Makefile"><span class="toc-number">3.2.</span> <span class="toc-text">Makefile</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#makefile%E5%A2%9E%E9%87%8F%E7%BC%96%E8%AF%91"><span class="toc-number">3.2.1.</span> <span class="toc-text">makefile增量编译</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#makefile%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.2.1.1.</span> <span class="toc-text">makefile的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%AA%E7%9B%AE%E6%A0%87"><span class="toc-number">3.2.1.2.</span> <span class="toc-text">伪目标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%A8%E9%87%8F%E7%BC%96%E8%AF%91"><span class="toc-number">3.2.1.3.</span> <span class="toc-text">全量编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">3.2.1.4.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8-%E5%AD%97%E7%AC%A6%E7%AE%A1%E7%90%86%E6%A0%BC%E5%BC%8F%E5%85%B3%E7%B3%BB"><span class="toc-number">3.2.1.5.</span> <span class="toc-text">用%字符管理格式关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0"><span class="toc-number">3.2.1.6.</span> <span class="toc-text">内置函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%80%E7%BB%88%E7%89%88%E6%9C%AC"><span class="toc-number">3.2.1.7.</span> <span class="toc-text">最终版本</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%89%88makefile"><span class="toc-number">3.2.2.</span> <span class="toc-text">第二版makefile</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/02/03/CSS%E5%AD%A6%E4%B9%A0/" title="CSS学习"><img src="/post_img/7.jpg" onerror="this.onerror=null;this.src='/img/index_img/20231118202750.jpg'" alt="CSS学习"/></a><div class="content"><a class="title" href="/2024/02/03/CSS%E5%AD%A6%E4%B9%A0/" title="CSS学习">CSS学习</a><time datetime="2024-02-03T14:46:10.000Z" title="发表于 2024-02-03 22:46:10">2024-02-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/01/14/html%E5%AD%A6%E4%B9%A0/" title="html学习"><img src="/post_img/15.jpg" onerror="this.onerror=null;this.src='/img/index_img/20231118202750.jpg'" alt="html学习"/></a><div class="content"><a class="title" href="/2024/01/14/html%E5%AD%A6%E4%B9%A0/" title="html学习">html学习</a><time datetime="2024-01-14T13:52:08.000Z" title="发表于 2024-01-14 21:52:08">2024-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/27/linux%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="linux第二部分-操作系统"><img src="/./post_img/2.jpg" onerror="this.onerror=null;this.src='/img/index_img/20231118202750.jpg'" alt="linux第二部分-操作系统"/></a><div class="content"><a class="title" href="/2023/11/27/linux%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="linux第二部分-操作系统">linux第二部分-操作系统</a><time datetime="2023-11-27T13:10:11.000Z" title="发表于 2023-11-27 21:10:11">2023-11-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/23/vscode%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5linux%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="vscode远程连接linux环境配置"><img src="/./post_img/3.jpg" onerror="this.onerror=null;this.src='/img/index_img/20231118202750.jpg'" alt="vscode远程连接linux环境配置"/></a><div class="content"><a class="title" href="/2023/11/23/vscode%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5linux%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" title="vscode远程连接linux环境配置">vscode远程连接linux环境配置</a><time datetime="2023-11-23T08:52:40.000Z" title="发表于 2023-11-23 16:52:40">2023-11-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/22/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E6%80%BB%E7%AC%94%E8%AE%B0/" title="算法基础总笔记（建议收藏，持续更新）"><img src="/post_img/12.jpg" onerror="this.onerror=null;this.src='/img/index_img/20231118202750.jpg'" alt="算法基础总笔记（建议收藏，持续更新）"/></a><div class="content"><a class="title" href="/2023/11/22/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E6%80%BB%E7%AC%94%E8%AE%B0/" title="算法基础总笔记（建议收藏，持续更新）">算法基础总笔记（建议收藏，持续更新）</a><time datetime="2023-11-22T07:45:12.000Z" title="发表于 2023-11-22 15:45:12">2023-11-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By niepandou</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><div class="js-pjax"><script>(()=>{
+  const loadLivere = () => {
+    if (typeof LivereTower === 'object') window.LivereTower.init()
+    else {
+      (function(d, s) {
+          var j, e = d.getElementsByTagName(s)[0];
+          if (typeof LivereTower === 'function') { return; }
+          j = d.createElement(s);
+          j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+          j.async = true;
+          e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    }
+  }
+
+  if ('Livere' === 'Livere' || !false) {
+    if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+    else loadLivere()
+  } else {
+    window.loadOtherComment = loadLivere
+  }
+})()</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="true" data-text="富强,民主,文明,和谐,自由,平等,公正,法治,爱国,敬业,诚信,友善" data-fontsize="15px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
