@@ -5151,4 +5151,97 @@
 <p>其输出结果应当为abcde，其中fg为被打印的原因为：在strcpy函数中，arr1拷贝给arr2时，arr1中末尾存在\0，在拷贝后arr2的字符串为”abcde\0fg“，\0代表了终止符，于是打印arr2仅能打印到e。</p>
 ]]></content>
   </entry>
+  <entry>
+    <title>数据库学习</title>
+    <url>/2024/05/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<blockquote>
+<p>安装配置mysql不想写</p>
+</blockquote>
+<p><strong>mysql语法介绍</strong></p>
+<blockquote>
+<ol>
+<li><p>sql语句可以单行或多行,分号结尾</p>
+</li>
+<li><p>可缩进</p>
+</li>
+<li><p>不区分大小写,关键字建议大写</p>
+</li>
+<li><p>注释</p>
+</li>
+</ol>
+<p> – 单行注释</p>
+<p> # mysql特有单行注释</p>
+<pre><code>/* 多行注释
+*/
+</code></pre>
+<p> DDL 数据定义语言,定义数据库对象(数据库,表,字段)<br> DML 数据操作语言,对数据库表中进行增删改<br> DQL 数据查询语言,查询数据库中表的记录<br> DCL 数据控制语言,创建数据库用户,控制数据库的访问权限</p>
+</blockquote>
+<h1 id="DDL语法"><a href="#DDL语法" class="headerlink" title="DDL语法"></a>DDL语法</h1><h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2><h3 id="查询所有数据库"><a href="#查询所有数据库" class="headerlink" title="查询所有数据库"></a>查询所有数据库</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> DATABASES;</span><br></pre></td></tr></table></figure>
+<h3 id="查询当前数据库"><a href="#查询当前数据库" class="headerlink" title="查询当前数据库"></a>查询当前数据库</h3><blockquote>
+<p> 当不知道自己处在哪里时可以使用</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> DATABASE();</span><br></pre></td></tr></table></figure>
+<h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATABASE 数据库名</span><br><span class="line"><span class="keyword">CREATE</span> DATABASE [IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] 数据库名 [<span class="keyword">DEFAULT</span> CHARSET 字符集] [<span class="keyword">COLLATE</span> 排序规则]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>[1] 如果数据存在那么不执行该语句,如果不存在则执行<br>   [2] 指定字符集 ,数据库中utf8一个字符最多3个字节,但有的字符会占4个字节,可以使用utf8mb4<br>   [3] 指定排序方式<br>   写的时候方括号不要带</p>
+</blockquote>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> DATABASE [IF <span class="keyword">EXISTS</span>] 数据库名</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>[1] 存在则删</p>
+</blockquote>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">USE 数据库名;</span><br></pre></td></tr></table></figure>
+
+<h2 id="表操作"><a href="#表操作" class="headerlink" title="表操作"></a>表操作</h2><h3 id="查询当前数据库所有表-必须在某个数据库中"><a href="#查询当前数据库所有表-必须在某个数据库中" class="headerlink" title="查询当前数据库所有表(必须在某个数据库中)"></a>查询当前数据库所有表(必须在某个数据库中)</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">show</span> tables;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询表结构"><a href="#查询表结构" class="headerlink" title="查询表结构"></a>查询表结构</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">desc</span> 表名</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询指定表的建表语句"><a href="#查询指定表的建表语句" class="headerlink" title="查询指定表的建表语句"></a>查询指定表的建表语句</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">table</span> 表名</span><br></pre></td></tr></table></figure>
+
+<h3 id="表创建"><a href="#表创建" class="headerlink" title="表创建"></a>表创建</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> 表名</span><br><span class="line">    (</span><br><span class="line">        字段<span class="number">1</span> 字段<span class="number">1</span>类型 [COMMENT 字段<span class="number">1</span>注释],</span><br><span class="line">        字段<span class="number">2</span> 字段<span class="number">2</span>类型 [COMMENT 字段<span class="number">2</span>注释],</span><br><span class="line">        字段<span class="number">3</span> 字段<span class="number">3</span>类型 [COMMENT 字段<span class="number">3</span>注释],</span><br><span class="line">        字段<span class="number">4</span> 字段<span class="number">4</span>类型 [COMMENT 字段<span class="number">4</span>注释]</span><br><span class="line">    )[COMMENT 表注释];</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>示例</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">user</span></span><br><span class="line"><span class="operator">-</span><span class="operator">&gt;</span> (</span><br><span class="line"><span class="operator">-</span><span class="operator">&gt;</span> id <span class="type">int</span> comment <span class="string">&#x27;编号&#x27;</span>,</span><br><span class="line"><span class="operator">-</span><span class="operator">&gt;</span> name <span class="type">varchar</span>(<span class="number">50</span>) comment <span class="string">&#x27;姓名&#x27;</span>,</span><br><span class="line"><span class="operator">-</span><span class="operator">&gt;</span> age <span class="type">int</span> comment <span class="string">&#x27;年龄&#x27;</span>,</span><br><span class="line"><span class="operator">-</span><span class="operator">&gt;</span> gender <span class="type">varchar</span>(<span class="number">1</span>) comment <span class="string">&#x27;性别&#x27;</span></span><br><span class="line"><span class="operator">-</span><span class="operator">&gt;</span> );</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">tinyint     1b</span><br><span class="line">smallint    2b</span><br><span class="line">mediumint   3b</span><br><span class="line">int/integer 4b</span><br><span class="line">bigint      8b</span><br><span class="line">float       4b</span><br><span class="line">double      8b</span><br><span class="line">decimal     依赖于M(精度)和D(标度) 小数值(精确点数)</span><br><span class="line">123.45 		精度123 标度45</span><br><span class="line">数据类型之后加上unsigned可以用来做无符号</span><br><span class="line">tinyint unsigned -&gt; 0-255</span><br></pre></td></tr></table></figure>
+
+<h3 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">char 		0-255B		定长字符串</span><br><span class="line">varchar		0-65535B	变长字符串</span><br><span class="line">tinyblob	0-255B		二进制数据</span><br><span class="line">tinytext	0-255B		短文本字符串</span><br><span class="line">blob		0-65535B	二进制形式的长文本数据</span><br><span class="line">text		0-65535B	长文本数据</span><br><span class="line">mediumblob	0-16777215B	二进制中等文本</span><br><span class="line">mediumtext	~			中等文本</span><br><span class="line">longblob	0-4294967295B极大二进制文本</span><br><span class="line">longtext 	~			极大文本</span><br></pre></td></tr></table></figure>
+
+<h3 id="日期类型"><a href="#日期类型" class="headerlink" title="日期类型"></a>日期类型</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">data		3	YYYY-MM-DD			日期值</span><br><span class="line">time		3	HH:MM:SS			时间值或持续时间</span><br><span class="line">year		1	YYYY				年份</span><br><span class="line">datatime	8	YYYY-MM-DD HH:MM:SS	  混合日期和时间值</span><br><span class="line">timestamp	4	YYYY-MM-DD HH:MM:SS	  混合日期和时间值,时间戳</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>样例 员工表</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">create table employee</span><br><span class="line">    (</span><br><span class="line">     id tinyint comment &#x27;编号&#x27;,</span><br><span class="line">     word_number varchar(10) comment &#x27;员工编号&#x27;,</span><br><span class="line">     name varchar(10) comment &#x27;员工姓名&#x27;,</span><br><span class="line">     gender char(1) comment &#x27;性别&#x27;,</span><br><span class="line">     age int unsigned comment &#x27;年龄&#x27;,</span><br><span class="line">     id_card char(18) comment &#x27;身份证号&#x27;,</span><br><span class="line">     entrance_date date comment &#x27;入职时间&#x27;</span><br><span class="line">     )comment &#x27;员工表&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><h3 id="添加字段"><a href="#添加字段" class="headerlink" title="添加字段"></a>添加字段</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alter table 表名 add 字段名 类型(长度) [comment 注释] [约束] </span><br></pre></td></tr></table></figure>
+
+<h3 id="修改数据类型"><a href="#修改数据类型" class="headerlink" title="修改数据类型"></a>修改数据类型</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alter table 表名 modify 字段名 新数据类型(长度)</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改字段名和字段类型"><a href="#修改字段名和字段类型" class="headerlink" title="修改字段名和字段类型"></a>修改字段名和字段类型</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alter table 表名 change 旧字段名 新字段名 类型(长度) [comment 注释] [约束]</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除字段"><a href="#删除字段" class="headerlink" title="删除字段"></a>删除字段</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alter table 表名 drop 字段名</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改表名"><a href="#修改表名" class="headerlink" title="修改表名"></a>修改表名</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alter table 表名 rename to 新表名</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">drop table [if exists] 表名</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除指定表-并重新创建该表"><a href="#删除指定表-并重新创建该表" class="headerlink" title="删除指定表,并重新创建该表"></a>删除指定表,并重新创建该表</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">truncate table 表名</span><br></pre></td></tr></table></figure>
+
+<h2 id="DataGrip"><a href="#DataGrip" class="headerlink" title="DataGrip"></a>DataGrip</h2><p>创建好项目后的链接操作,选择mysql</p>
+<p><img src="/2024/05/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/image-20240507225629645.png" alt="image-20240507225629645"></p>
+<p>配置链接信息,同时点击下方下载驱动,下载好后test成功即可使用</p>
+<p><img src="/2024/05/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/image-20240507225700715.png" alt="image-20240507225700715"></p>
+<p>此处选择所有架构,来让所有数据库显示,架构即为数据库,新建数据库时也是选择架构Schema</p>
+<p><img src="/2024/05/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/image-20240507225958126.png" alt="image-20240507225958126"></p>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+        <tag>mysql</tag>
+        <tag>datagrip</tag>
+      </tags>
+  </entry>
 </search>
