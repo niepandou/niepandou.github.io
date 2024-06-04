@@ -5362,6 +5362,22 @@
 
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show grants for &#x27;test&#x27;@&#x27;localhost&#x27;;</span><br><span class="line">grant all on * to &#x27;test&#x27;@&#x27;localhost&#x27;;</span><br><span class="line">revoke all on * from &#x27;test&#x27;@&#x27;localhost&#x27;;</span><br></pre></td></tr></table></figure>
 
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><p>可以直接调用的程序或代码</p>
+<h2 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h2><p><img src="/2024/05/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/image-20240604092606406.png" alt="image-20240604092606406"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-- 字符串函数</span><br><span class="line"></span><br><span class="line">-- concat</span><br><span class="line">select concat(&#x27;Hello&#x27;,&#x27;Mysql&#x27;);</span><br><span class="line">-- lower</span><br><span class="line">select lower(&#x27;HELLO&#x27;);</span><br><span class="line">-- upper</span><br><span class="line">select upper(&#x27;hello&#x27;);</span><br><span class="line">-- lpad</span><br><span class="line">select lpad(&#x27;hello&#x27;,6,&#x27;w&#x27;); -- 填充长度小于字符串长度也可以看作是分割字符串</span><br><span class="line">-- rpad</span><br><span class="line">select rpad(&#x27;hello&#x27;,6,&#x27;w&#x27;);</span><br><span class="line">-- trim</span><br><span class="line">select trim(&#x27;    add   div  &#x27;);</span><br><span class="line">-- substring</span><br><span class="line">select substring(&#x27;hello&#x27;,1,2); -- 起始点为1</span><br><span class="line"></span><br><span class="line">-- 由于业务需求变更,企业员工的工号统一为5位数,不足5位用0补足,例如1的工号改为00001</span><br><span class="line">update emp set workno = lpad(workno, 5, &#x27;0&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>唯一要注意的就是substring<strong>的起始点</strong></p>
+<h2 id="数值函数"><a href="#数值函数" class="headerlink" title="数值函数"></a>数值函数</h2><p><img src="/2024/05/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/image-20240604094036402.png" alt="image-20240604094036402"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-- ceil</span><br><span class="line">select ceil(1.5);</span><br><span class="line">-- floor</span><br><span class="line">select floor(1.5);</span><br><span class="line">-- mod</span><br><span class="line">select mod(3,2);</span><br><span class="line">-- rand</span><br><span class="line">select rand();</span><br><span class="line">-- round</span><br><span class="line">select round(1.4555,0);</span><br><span class="line"></span><br><span class="line">-- 通过函数,生成随机的6位验证码</span><br><span class="line">select lpad(floor(rand() * (1e6)),6,&#x27;0&#x27;);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h2><p><img src="/2024/05/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/image-20240604095240973.png" alt="image-20240604095240973"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-- 日期函数</span><br><span class="line">-- curdate</span><br><span class="line">select curdate();</span><br><span class="line">-- curtime</span><br><span class="line">select curtime();</span><br><span class="line">-- now</span><br><span class="line">select now();</span><br><span class="line">-- year,month,day</span><br><span class="line">select year(now());</span><br><span class="line">select month(now());</span><br><span class="line">select day(now());</span><br><span class="line"></span><br><span class="line">-- date_add</span><br><span class="line">select date_add(now(),interval 70 year);</span><br><span class="line">-- datediff</span><br><span class="line">select datediff(now(),&#x27;2024-1-1&#x27;);</span><br><span class="line"></span><br><span class="line">-- 查询所有员工入职天数,并按天数倒序排序</span><br><span class="line">select name,datediff(now(),entrydate) as entryDays</span><br><span class="line">    from emp</span><br><span class="line">    order by entryDays desc;</span><br></pre></td></tr></table></figure>
+
+<h2 id="流程函数"><a href="#流程函数" class="headerlink" title="流程函数"></a>流程函数</h2><p><img src="/2024/05/07/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/image-20240604100628187.png" alt="image-20240604100628187"></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-- 流程函数</span><br><span class="line"></span><br><span class="line">-- if</span><br><span class="line">select if(true, &#x27;1&#x27;, &#x27;0&#x27;);</span><br><span class="line">-- ifnull</span><br><span class="line">select ifnull(null, &#x27;Default&#x27;);</span><br><span class="line">select ifnull(&#x27;ok&#x27;, &#x27;Default&#x27;);</span><br><span class="line"></span><br><span class="line">-- case when then else and</span><br><span class="line">select name, case workaddress when &#x27;北京&#x27; then &#x27;一线城市&#x27; when &#x27;上海&#x27; then &#x27;一线城市&#x27; else &#x27;二线城市&#x27; end</span><br><span class="line">    from emp;</span><br><span class="line"></span><br><span class="line">create table stu</span><br><span class="line">(</span><br><span class="line">    name    varchar(10) comment &#x27;姓名&#x27;,</span><br><span class="line">    math    int comment &#x27;数学&#x27;,</span><br><span class="line">    english int comment &#x27;英语&#x27;,</span><br><span class="line">    chinese int comment &#x27;语文&#x27;</span><br><span class="line">) comment &#x27;学生成绩单&#x27;</span><br><span class="line"></span><br><span class="line">insert into stu</span><br><span class="line">    values (&#x27;张三&#x27;, 99, 20, 59),</span><br><span class="line">           (&#x27;李四&#x27;, 69, 50, 89),</span><br><span class="line">           (&#x27;王五&#x27;, 39, 70, 79);</span><br><span class="line">-- 成绩&gt;=85 优秀,&lt;85且&gt;=60及格,其余不及格</span><br><span class="line"></span><br><span class="line">select name,</span><br><span class="line">       (case when math &gt;=85 then &#x27;优秀&#x27; when math &gt;=60 then &#x27;及格&#x27; else &#x27;不及格&#x27; end) &#x27;数学&#x27;,</span><br><span class="line">       (case when english &gt;=85 then &#x27;优秀&#x27; when english &gt;=60 then &#x27;及格&#x27; else &#x27;不及格&#x27; end) &#x27;英语&#x27;,</span><br><span class="line">       (case when chinese &gt;=85 then &#x27;优秀&#x27; when chinese &gt;=60 then &#x27;及格&#x27; else &#x27;不及格&#x27; end) &#x27;语文&#x27;</span><br><span class="line">   from stu;</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>数据库</category>
@@ -5370,6 +5386,93 @@
         <tag>数据库</tag>
         <tag>mysql</tag>
         <tag>datagrip</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微信小程序开发</title>
+    <url>/2024/05/24/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/</url>
+    <content><![CDATA[<p>[TOC]</p>
+<h1 id="小程序简介"><a href="#小程序简介" class="headerlink" title="小程序简介"></a>小程序简介</h1><h2 id="了解微信小程序"><a href="#了解微信小程序" class="headerlink" title="了解微信小程序"></a>了解微信小程序</h2><h3 id="小程序与普通网页不同"><a href="#小程序与普通网页不同" class="headerlink" title="小程序与普通网页不同"></a><strong>小程序与普通网页不同</strong></h3><ul>
+<li>运行环境不同<ul>
+<li>网页运行在浏览器环境</li>
+<li>小程序运行中微信环境</li>
+</ul>
+</li>
+<li>API不同<ul>
+<li>无法调用DOM和BOM的API</li>
+<li>可以调用微信提供的API</li>
+</ul>
+</li>
+<li>开发模式不同<ul>
+<li>网页开发模式:浏览器+代码编辑器</li>
+<li>小程序开发步骤<ul>
+<li>注册账号</li>
+<li>安装开发者工具</li>
+<li>创建和配置小程序项目</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="体验小程序"><a href="#体验小程序" class="headerlink" title="体验小程序"></a>体验小程序</h3><p>扫码体验小程序功能</p>
+<p><img src="/2024/05/24/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/image-20240524233909237.png" alt="image-20240524233909237"></p>
+<h2 id="注册微信小程序"><a href="#注册微信小程序" class="headerlink" title="注册微信小程序"></a>注册微信小程序</h2><p>跳转到mp.weixin.qq.com</p>
+<ol>
+<li>注册账号</li>
+<li>选择小程序开发,并选择个人开发</li>
+<li>填写信息,认证</li>
+</ol>
+<p>注册完成后自动登录,可以在开发一栏中看到自己的AppID</p>
+<p><img src="/2024/05/24/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/image-20240524234040193.png" alt="image-20240524234040193"></p>
+<h2 id="开发者工具"><a href="#开发者工具" class="headerlink" title="开发者工具"></a>开发者工具</h2><h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a><strong>功能</strong></h3><ol>
+<li>快速创建小程序项目</li>
+<li>代码查看和编辑</li>
+<li>对小程序功能调试</li>
+<li>预览和发布</li>
+</ol>
+<h3 id="下载安装登录"><a href="#下载安装登录" class="headerlink" title="下载安装登录"></a>下载安装登录</h3><p>下载链接:<a href="https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html">微信开发者工具下载地址与更新日志 | 微信开放文档 (qq.com)</a></p>
+<p>选择对应版本下载</p>
+<p>安装好后扫码登录</p>
+<img src="/2024/05/24/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/image-20240524234652478.png" alt="image-20240524234652478" style="zoom: 50%;">
+
+<h3 id="设置外观和代理"><a href="#设置外观和代理" class="headerlink" title="设置外观和代理"></a>设置外观和代理</h3><ol>
+<li><p>点击小齿轮图标(不同版本位置不同)</p>
+</li>
+<li><p>选择外观</p>
+<p><img src="/2024/05/24/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/image-20240524235031716.png" alt="image-20240524235031716"></p>
+</li>
+<li><p>进行修改</p>
+</li>
+<li><p>选择代理,选择不使用任何代理</p>
+</li>
+</ol>
+<h3 id="创建小程序"><a href="#创建小程序" class="headerlink" title="创建小程序"></a>创建小程序</h3><ol>
+<li><p>选择小程序项目-&gt;小程序-&gt;创建小程序</p>
+</li>
+<li><p>然后设置一下项目的配置即可,并且注意不要选择使用云服务</p>
+</li>
+<li><p>语言选择JS</p>
+</li>
+</ol>
+<h3 id="查看效果"><a href="#查看效果" class="headerlink" title="查看效果"></a>查看效果</h3><ul>
+<li>在模拟器上查看</li>
+</ul>
+<p>​		在项目中选择左侧顶端,找到模拟器打开即可</p>
+<ul>
+<li><p>在实机上使用</p>
+<p>点击顶端靠右侧的真机调试,运行后出现二维码,扫描后测试</p>
+</li>
+</ul>
+<blockquote>
+<p>机型建议选择IPhone6&#x2F;7&#x2F;8</p>
+</blockquote>
+<p>​	</p>
+]]></content>
+      <tags>
+        <tag>html</tag>
+        <tag>数据库</tag>
+        <tag>web</tag>
+        <tag>javascript</tag>
       </tags>
   </entry>
 </search>
